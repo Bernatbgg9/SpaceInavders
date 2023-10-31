@@ -3,7 +3,7 @@
 actorList = {} --Lista de elementos de juego
 
 function love.load()
-print ("´hoaç")
+print ("´HOLA")
 end
 
 function love.update(dt)
