@@ -5,12 +5,46 @@ local stop = true
 
 function Enemi:new(x, y)
     Enemi.super.new(self, "src/textures/si.png", 30, 30, 50, 1, 0)
+    self.position.x = 30
+    self.position.y = 30
+    self.speed      = 250
+    self.forward    = Vector.new(1, 0)
+    self.fila       = 1
 end
 
 function Enemi:update(dt)
     if stop then
-        print(self.position.x)
-        Enemi.super.update(self,dt) 
+        if self.position.x < 730 and self.position.y == 30 then
+            self.position = self.position + self.forward * self.speed * dt
+        elseif self.position.x > 730 and self.position.y < 90 then
+            self.position.y = self.position.y + self.speed * dt
+        elseif self.position.x > 30 and self.position.y > 90 and self.fila == 1 then
+            self.position = self.position - self.forward * self.speed * dt
+        elseif self.position.x < 30 and self.position.y < 150 then
+            self.position.y = self.position.y + self.speed * dt
+            self.fila = 2
+        elseif self.position.x < 730 and self.position.y > 150 and self.fila == 2 then
+            self.position = self.position + self.forward * self.speed * dt
+        elseif self.position.x > 730 and self.position.y < 210 then
+            self.position.y = self.position.y + self.speed * dt
+            self.fila = 3
+        elseif self.position.x > 30 and self.position.y > 210 and self.fila == 3 then
+            self.position = self.position - self.forward * self.speed * dt
+        elseif self.position.x < 30 and self.position.y < 270 then
+            self.position.y = self.position.y + self.speed * dt
+            self.fila = 4
+        elseif self.position.x < 730 and self.position.y > 270 and self.fila == 4 then
+            self.position = self.position + self.forward * self.speed * dt
+        elseif self.position.x > 730 and self.position.y < 330 then
+            self.position.y = self.position.y + self.speed * dt
+            self.fila = 5
+        elseif self.position.x > 30 and self.position.y > 330 and self.fila == 5 then
+            self.position = self.position - self.forward * self.speed * dt
+        elseif self.position.x < 30 and self.position.y < 390 then
+            self.position.y = self.position.y + self.speed * dt
+        elseif self.position.y > 390 then
+            stop = false
+        end
     end
 end
 
