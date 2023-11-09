@@ -4,3 +4,4 @@
 09/11 Empezar la clase player e implementar el HUD (vida y puntos)
 9/11 Cambios Bala y Enemy
 9/11 Movimiento y disparo del player
+9/11 Spanwer y arreglos

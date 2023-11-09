@@ -8,7 +8,7 @@ local timer = 7
 
 local skinMalos = { "src/textures/malo1.png", "src/textures/malo.png", "src/textures/malo2.png" }
 
-function Enemy:new(x, y)
+function Enemy:new()
     Enemy.super.new(self, skinMalos[math.random(1, 3)], 30, 30, 50, 1, 0)
     self.position.x = 30
     self.position.y = 30
@@ -64,32 +64,18 @@ function Enemy:update(dt)
     for k, v in ipairs(actorList) do
         if v:is(Enemy) then
             table.insert(enemy, Enemy)
-            local num = math.random(1, #enemy)
-
-            print(1)
-            for k, v in ipairs(enemy) do
-                if k == num then
-                    local bala = Bala()
-                    bala.position.x = self.position.x
-                    bala.position.y = self.position.y
-                    table.insert(actorList, bala)
-                    print(2)
-                end
-                if v:is(Enemy) then
-                    table.insert(enemy, Enemy)
-                end
-            end
         end
-        if timer <= 0 then
-            local num = math.random(1, #enemy)
-            for k, v in ipairs(enemy) do
-                if k == num then
-                    local bala = Bala()
-                    bala.position.x = self.position.x
-                    bala.position.y = self.position.y
-                    table.insert(actorList, bala)
-                    timer = 7
-                end
+    end
+
+    if timer <= 0 then
+        local num = math.random(1, #enemy)
+        for k, v in ipairs(enemy) do
+            if k == num then
+                local bala = Bala()
+                bala.position.x = self.position.x
+                bala.position.y = self.position.y
+                table.insert(actorList, bala)
+                timer = 7
             end
         end
     end
