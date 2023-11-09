@@ -3,13 +3,27 @@ local BalaPlayer = Actor:extend()
 
 function BalaPlayer:new(x, y)
    BalaPlayer.super.new(self, "src/textures/balaBueno.png", x, y, 200, 0, 1)
-   --self.scale.x = 2
-   --self.scale.y = 2
+   self.scale.x = 2
+   self.scale.y = 2
 end
 
 function BalaPlayer:update(dt)
    --BalaPlayer.super.update(self, dt)
    self.position.y = self.position.y - self.speed * dt
+   if self.position.x >= w or self.position.x < 0 or self.position.y >= h or self.position.y < 0 then
+      for i, v in pairs(actorList) do
+         if (v == self) then
+            table.remove(actorList, i)
+         end
+      end
+   end
+   for k, v in pairs(actorList) do
+      if v:is(Enemy) then
+        if self:checkCollision(v) then
+          table.remove(actorList, k)
+        end
+      end
+    end
 end
 
 function BalaPlayer:draw()
