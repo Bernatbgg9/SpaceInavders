@@ -1,5 +1,5 @@
 Actor = Actor or require "src/actor"
-local Enemi = Actor:extend()
+local Enemy = Actor:extend()
 local Bala = Bala or require "src/Bala"
 
 
@@ -8,8 +8,8 @@ local stop = true
 
 local skinMalos = { "src/textures/malo1.png", "src/textures/malo.png", "src/textures/malo2.png" }
 
-function Enemi:new(x, y)
-    Enemi.super.new(self, skinMalos[math.random(1, 3)], 30, 30, 50, 1, 0)
+function Enemy:new(x, y)
+    Enemy.super.new(self, skinMalos[math.random(1, 3)], 30, 30, 50, 1, 0)
     self.position.x = 30
     self.position.y = 30
     self.speed      = 250
@@ -17,7 +17,7 @@ function Enemi:new(x, y)
     self.fila       = 1
 end
 
-function Enemi:update(dt)
+function Enemy:update(dt)
     if stop then
         if self.position.x < 730 and self.position.y == 30 then
             self.position = self.position + self.forward * self.speed * dt
@@ -54,8 +54,8 @@ function Enemi:update(dt)
     local enemy = {}
 
     for k, v in ipairs(actorList) do
-        if v:is(Enemi) then
-            table.insert(enemy, Enemi)
+        if v:is(Enemy) then
+            table.insert(enemy, Enemy)
             local num = math.random(1, #enemy)
 
             print(1)
@@ -72,7 +72,7 @@ function Enemi:update(dt)
     end
 end
 
-function Enemi:draw()
+function Enemy:draw()
     local xx = self.position.x
     local ox = self.origin.x
     local yy = self.position.y
@@ -83,4 +83,4 @@ function Enemi:draw()
     love.graphics.draw(self.image, xx, yy, rr, 4, 4, ox, oy, 0, 0)
 end
 
-return Enemi
+return Enemy

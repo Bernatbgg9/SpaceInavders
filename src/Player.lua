@@ -1,5 +1,5 @@
 Actor = Actor or require "src/actor"
-BalaPlayer = BalaPlayer or require "src/bullet"
+BalaPlayer = BalaPlayer or require "src/BalaPlayer"
 local Player = Actor:extend()
 
 function Player:new()
@@ -8,6 +8,7 @@ function Player:new()
     self.points = 0
     self.scale.x = 4
     self.scale.y = 4
+    
 end
 
 function Player:update(dt)
@@ -34,10 +35,7 @@ end
 
 function Player:keyPressed(key)
     if key == "space" then
-      local a = BalaPlayer()
-      a.position.x = self.position.x
-      a.position.y = self.position.y
-      a.forward = self.forward
+      local a = BalaPlayer(self.position.x, self.position.y)
       table.insert(actorList, a)
     end
   end

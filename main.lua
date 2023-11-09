@@ -1,5 +1,5 @@
 Player = Player or require "src/Player"
-Enemi = Enemi or require "src/Enemi"
+Enemy = Enemy or require "src/Enemi"
 Boss = Boss or require "src/Boss"
 Hud = Hud or require "src/Hud"
 
@@ -13,7 +13,7 @@ function love.load()
     w, h = love.graphics.getDimensions()
     local p = Player()
     table.insert(actorList, p)
-    local e = Enemi()
+    local e = Enemy()
     table.insert(actorList, e)
     local h = Hud()
     table.insert(actorList, h)
@@ -25,9 +25,9 @@ function love.update(dt)
 
     for _, v in ipairs(actorList) do
         v:update(dt)
-        if v:is(Enemi) then
+        if v:is(Enemy) then
             if timer <= 0 then
-                local e = Enemi()
+                local e = Enemy()
                 table.insert(actorList, e)
                 timer = 0.5
             end
@@ -46,7 +46,7 @@ end
 function love.keypressed(key)
     for _, v in ipairs(actorList) do
         if v:is(Player) then
-            --v:keyPressed(key)
+            v:keyPressed(key)
         end
     end
 end
