@@ -2,7 +2,7 @@ local Actor = Actor or require "Scripts/actor"
 Bala = Actor:extend()
 
 function Bala:new()
-  Bala.super.new(self, "src/textures/balaMalo.png", 1, 1, 500, 1, 0)
+  Bala.super.new(self, "src/textures/balaMalo.png", 1, 1, 150, 1, 0)
 end
 
 function Bala:update(dt)
@@ -22,8 +22,8 @@ function Bala:draw()
   local ox = self.origin.x
   local yy = self.position.y
   local oy = self.origin.y
-  local sx = self.scale.x
-  local sy = self.scale.y
+  local sx = 2
+  local sy = 2
   local rr = self.rot
   love.graphics.draw(self.image, xx, yy, rr, sx, sy, ox, oy, 0, 0)
 end
