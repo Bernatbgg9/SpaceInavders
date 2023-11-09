@@ -2,9 +2,9 @@ Actor = Actor or require "src/actor"
 local Enemy = Actor:extend()
 local Bala = Bala or require "src/Bala"
 
-
-
 local stop = true
+
+local timer = 7
 
 local skinMalos = { "src/textures/malo1.png", "src/textures/malo.png", "src/textures/malo2.png" }
 
@@ -17,7 +17,13 @@ function Enemy:new(x, y)
     self.fila       = 1
 end
 
+<<<<<<< HEAD:src/Enemy.lua
 function Enemy:update(dt)
+=======
+function Enemi:update(dt)
+    timer = timer - dt
+
+>>>>>>> 6977d33a3b3eed355012ae3a024258dd787f163e:src/Enemi.lua
     if stop then
         if self.position.x < 730 and self.position.y == 30 then
             self.position = self.position + self.forward * self.speed * dt
@@ -52,8 +58,10 @@ function Enemy:update(dt)
         end
     end
     local enemy = {}
+    
 
     for k, v in ipairs(actorList) do
+<<<<<<< HEAD:src/Enemy.lua
         if v:is(Enemy) then
             table.insert(enemy, Enemy)
             local num = math.random(1, #enemy)
@@ -67,6 +75,22 @@ function Enemy:update(dt)
                     table.insert(actorList, bala)
                     print(2)
                 end
+=======
+        if v:is(Enemi) then
+            table.insert(enemy, Enemi)    
+        end
+    end
+    if timer <= 0 then
+        
+        local num = math.random(1, #enemy)
+        for k, v in ipairs(enemy) do
+            if k == num then
+                local bala = Bala()
+                bala.position.x = self.position.x
+                bala.position.y = self.position.y
+                table.insert(actorList, bala)
+                timer = 7
+>>>>>>> 6977d33a3b3eed355012ae3a024258dd787f163e:src/Enemi.lua
             end
         end
     end
@@ -80,7 +104,7 @@ function Enemy:draw()
     local sx = self.scale.x
     local sy = self.scale.y
     local rr = self.rot
-    love.graphics.draw(self.image, xx, yy, rr, 4, 4, ox, oy, 0, 0)
+    love.graphics.draw(self.image, xx, yy, rr, sx, sy, ox, oy, 0, 0)
 end
 
 return Enemy
