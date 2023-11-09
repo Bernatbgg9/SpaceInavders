@@ -3,10 +3,10 @@ local Enemi = Actor:extend()
 
 local stop = true
 
-local skinMalos = {"src/textures/malo1.png","src/textures/malo.png","src/textures/malo2.png"}
+local skinMalos = { "src/textures/malo1.png", "src/textures/malo.png", "src/textures/malo2.png" }
 
 function Enemi:new(x, y)
-    Enemi.super.new(self, skinMalos[math.random(1,3)], 30, 30, 50, 1, 0)
+    Enemi.super.new(self, skinMalos[math.random(1, 3)], 30, 30, 50, 1, 0)
     self.position.x = 30
     self.position.y = 30
     self.speed      = 250
@@ -46,6 +46,11 @@ function Enemi:update(dt)
             self.position.y = self.position.y + self.speed * dt
         elseif self.position.y > 390 then
             stop = false
+            for k, v in ipairs(actorList) do
+                if v:is(Spawner) then
+                    v.stop = false
+                end
+            end
         end
     end
 end
