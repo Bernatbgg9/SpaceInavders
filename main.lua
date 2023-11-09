@@ -48,5 +48,8 @@ function love.keypressed(key)
         if v:is(Player) then
             --v:keyPressed(key)
         end
+        if v:is (Hud) then
+            v:keyPressed(key)
+        end
     end
 end

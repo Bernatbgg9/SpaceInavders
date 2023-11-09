@@ -12,9 +12,11 @@ function Enemi:new(x, y)
     self.speed      = 250
     self.forward    = Vector.new(1, 0)
     self.fila       = 1
+    self.stop = true
 end
 
 function Enemi:update(dt)
+    stop = self.stop
     if stop then
         if self.position.x < 730 and self.position.y == 30 then
             self.position = self.position + self.forward * self.speed * dt
