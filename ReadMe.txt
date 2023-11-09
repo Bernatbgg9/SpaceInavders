@@ -6,3 +6,4 @@
 9/11 Cambios Bala y Enemy
 9/11 Movimiento y disparo del player
 9/11 Spanwer y arreglos
+9/11 suma de puntos i resta de vidas (aun queda)
