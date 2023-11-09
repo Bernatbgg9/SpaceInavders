@@ -54,8 +54,14 @@ function HUD:draw()
     love.graphics.print("EXIT", self.pausex3, self.pausey3 )
     love.graphics.setColor(0,0,0)
   end
-  if self. vidas <= 0 then
+  if self.vidas <= 0 then
    love.graphics.print("YOU DIED", self.ppx, self.pppy )
+   self.pause = true
+   for k, v in ipairs(actorList) do
+    if v:is(Enemy) then
+      v.stop = false
+    end
+  end
   end
 end
 
@@ -63,7 +69,7 @@ function HUD:keyPressed(key)
   if key == "escape" then
     self.pause = true
     for k, v in ipairs(actorList) do
-      if v:is(Enemi) then
+      if v:is(Enemy) then
         v.stop = false
       end
     end
@@ -80,7 +86,7 @@ function HUD:keyPressed(key)
     if key == "return" and self.redLightUp == true then
       self.eraseMenu = false
       for k, v in ipairs(actorList) do
-        if v:is(Enemi) then
+        if v:is(Enemy) then
           v.stop = true
         end
       end
