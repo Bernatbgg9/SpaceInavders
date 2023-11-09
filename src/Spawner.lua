@@ -1,5 +1,5 @@
 local Actor = Actor or require("src/actor")
-local Enemi = Enemi or require "src/Enemi"
+local Enemy = Enemy or require "src/Enemy"
 local Spawner = Actor:extend()
 
 function Spawner:new(_t)
@@ -20,7 +20,7 @@ function Spawner:update(dt)
     self.tActual = self.tActual + dt
     if self.tActual > self.tFinal and self.stop then
         self.tActual = 0
-        local a = Enemi()
+        local a = Enemy()
         table.insert(actorList, a)
     end
 end

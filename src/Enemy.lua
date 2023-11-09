@@ -17,13 +17,9 @@ function Enemy:new(x, y)
     self.fila       = 1
 end
 
-<<<<<<< HEAD:src/Enemy.lua
 function Enemy:update(dt)
-=======
-function Enemi:update(dt)
     timer = timer - dt
 
->>>>>>> 6977d33a3b3eed355012ae3a024258dd787f163e:src/Enemi.lua
     if stop then
         if self.position.x < 730 and self.position.y == 30 then
             self.position = self.position + self.forward * self.speed * dt
@@ -63,10 +59,9 @@ function Enemi:update(dt)
         end
     end
     local enemy = {}
-    
+
 
     for k, v in ipairs(actorList) do
-<<<<<<< HEAD:src/Enemy.lua
         if v:is(Enemy) then
             table.insert(enemy, Enemy)
             local num = math.random(1, #enemy)
@@ -80,22 +75,21 @@ function Enemi:update(dt)
                     table.insert(actorList, bala)
                     print(2)
                 end
-=======
-        if v:is(Enemi) then
-            table.insert(enemy, Enemi)    
+                if v:is(Enemy) then
+                    table.insert(enemy, Enemy)
+                end
+            end
         end
-    end
-    if timer <= 0 then
-        
-        local num = math.random(1, #enemy)
-        for k, v in ipairs(enemy) do
-            if k == num then
-                local bala = Bala()
-                bala.position.x = self.position.x
-                bala.position.y = self.position.y
-                table.insert(actorList, bala)
-                timer = 7
->>>>>>> 6977d33a3b3eed355012ae3a024258dd787f163e:src/Enemi.lua
+        if timer <= 0 then
+            local num = math.random(1, #enemy)
+            for k, v in ipairs(enemy) do
+                if k == num then
+                    local bala = Bala()
+                    bala.position.x = self.position.x
+                    bala.position.y = self.position.y
+                    table.insert(actorList, bala)
+                    timer = 7
+                end
             end
         end
     end

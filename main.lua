@@ -1,5 +1,5 @@
 Player = Player or require "src/Player"
-Enemy = Enemy or require "src/Enemi"
+Enemy = Enemy or require "src/Enemy"
 Boss = Boss or require "src/Boss"
 Hud = Hud or require "src/Hud"
 Spawner = Spawner or require "src/Spawner"
@@ -14,16 +14,11 @@ function love.load()
     w, h = love.graphics.getDimensions()
     local p = Player()
     table.insert(actorList, p)
-<<<<<<< HEAD
-=======
-    local e = Enemy()
-    table.insert(actorList, e)
->>>>>>> ed58bb46b08d001c9cb7f4305a4d0bae8ba04d55
     local h = Hud()
     table.insert(actorList, h)
     local s = Spawner()
     table.insert(actorList, s)
-    local e = Enemi()
+    local e = Enemy()
     table.insert(actorList, e)
 end
 
@@ -33,11 +28,7 @@ function love.update(dt)
 
     for _, v in ipairs(actorList) do
         v:update(dt)
-<<<<<<< HEAD
-        --[[if v:is(Enemi) then
-=======
-        if v:is(Enemy) then
->>>>>>> ed58bb46b08d001c9cb7f4305a4d0bae8ba04d55
+        --[[if v:is(Enemy) then
             if timer <= 0 then
                 local e = Enemy()
                 table.insert(actorList, e)
