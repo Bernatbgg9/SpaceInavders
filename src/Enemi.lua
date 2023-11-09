@@ -1,5 +1,8 @@
 Actor = Actor or require "src/actor"
 local Enemi = Actor:extend()
+local Bala = Bala or require "src/Bala"
+
+
 
 local stop = true
 
@@ -49,6 +52,25 @@ function Enemi:update(dt)
             for k, v in ipairs(actorList) do
                 if v:is(Spawner) then
                     v.stop = false
+                end
+            end
+        end
+    end
+    local enemy = {}
+
+    for k, v in ipairs(actorList) do
+        if v:is(Enemi) then
+            table.insert(enemy, Enemi)
+            local num = math.random(1, #enemy)
+
+            print(1)
+            for k, v in ipairs(enemy) do
+                if k == num then
+                    local bala = Bala()
+                    bala.position.x = self.position.x
+                    bala.position.y = self.position.y
+                    table.insert(actorList, bala)
+                    print(2)
                 end
             end
         end
