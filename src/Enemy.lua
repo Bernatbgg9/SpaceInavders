@@ -18,14 +18,11 @@ function Enemy:new()
     self.stop = true
 end
 
-<<<<<<< HEAD:src/Enemi.lua
-function Enemi:update(dt)
-    stop = self.stop
-=======
 function Enemy:update(dt)
+    stop = self.stop
+
     timer = timer - dt
 
->>>>>>> 995550438719f2449a687d6f3ea30f7cd5c50b2d:src/Enemy.lua
     if stop then
         if self.position.x < 730 and self.position.y == 30 then
             self.position = self.position + self.forward * self.speed * dt
