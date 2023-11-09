@@ -1,6 +1,7 @@
 Player = Player or require "src/Player"
 Enemi = Enemi or require "src/Enemi"
 Boss = Boss or require "src/Boss"
+Hud = Hud or require "src/Hud"
 
 
 actorList = {} --Lista de elementos de juego
@@ -8,12 +9,14 @@ actorList = {} --Lista de elementos de juego
 local timer = 0.5
 
 function love.load()
+    love.window.setFullscreen(true, "exclusive")
+    w, h = love.graphics.getDimensions()
     local p = Player()
     table.insert(actorList, p)
-    local b = Boss()
-    table.insert(actorList, b)
     local e = Enemi()
     table.insert(actorList, e)
+    local h = Hud()
+    table.insert(actorList, h)
 end
 
 function love.update(dt)
@@ -37,7 +40,7 @@ function love.draw()
     for _, v in ipairs(actorList) do
         v:draw()
     end
-    love.graphics.line(0, 400, 800, 400)
+    love.graphics.line(0, h, w, h)
 end
 
 function love.keypressed(key)

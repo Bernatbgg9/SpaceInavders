@@ -3,7 +3,7 @@ local HUD = Actor:extend()
 local font = love.graphics.newFont("src/textures/font.ttf", 30)
 
 function HUD:new()
-  self.vidas = 5
+  self.vidas = 3
   self.hp = ("HP: ".. self.vidas)
   self.hpx = 10
   self.hpy = 10
