@@ -1,12 +1,15 @@
 Actor = Actor or require "src/actor"
-local Enemi = Actor:extend()
+local Enemy = Actor:extend()
+local Bala = Bala or require "src/Bala"
 
 local stop = true
 
-local skinMalos = {"src/textures/malo1.png","src/textures/malo.png","src/textures/malo2.png"}
+local timer = 7
 
-function Enemi:new(x, y)
-    Enemi.super.new(self, skinMalos[math.random(1,3)], 30, 30, 50, 1, 0)
+local skinMalos = { "src/textures/malo1.png", "src/textures/malo.png", "src/textures/malo2.png" }
+
+function Enemy:new()
+    Enemy.super.new(self, skinMalos[math.random(1, 3)], 30, 30, 50, 1, 0)
     self.position.x = 30
     self.position.y = 30
     self.speed      = 250
@@ -15,8 +18,14 @@ function Enemi:new(x, y)
     self.stop = true
 end
 
+<<<<<<< HEAD:src/Enemi.lua
 function Enemi:update(dt)
     stop = self.stop
+=======
+function Enemy:update(dt)
+    timer = timer - dt
+
+>>>>>>> 995550438719f2449a687d6f3ea30f7cd5c50b2d:src/Enemy.lua
     if stop then
         if self.position.x < 730 and self.position.y == 30 then
             self.position = self.position + self.forward * self.speed * dt
@@ -48,11 +57,37 @@ function Enemi:update(dt)
             self.position.y = self.position.y + self.speed * dt
         elseif self.position.y > 390 then
             stop = false
+            for k, v in ipairs(actorList) do
+                if v:is(Spawner) then
+                    v.stop = false
+                end
+            end
+        end
+    end
+    local enemy = {}
+
+
+    for k, v in ipairs(actorList) do
+        if v:is(Enemy) then
+            table.insert(enemy, Enemy)
+        end
+    end
+
+    if timer <= 0 then
+        local num = math.random(1, #enemy)
+        for k, v in ipairs(enemy) do
+            if k == num then
+                local bala = Bala()
+                bala.position.x = self.position.x
+                bala.position.y = self.position.y
+                table.insert(actorList, bala)
+                timer = 7
+            end
         end
     end
 end
 
-function Enemi:draw()
+function Enemy:draw()
     local xx = self.position.x
     local ox = self.origin.x
     local yy = self.position.y
@@ -60,7 +95,7 @@ function Enemi:draw()
     local sx = self.scale.x
     local sy = self.scale.y
     local rr = self.rot
-    love.graphics.draw(self.image, xx, yy, rr, 4, 4, ox, oy, 0, 0)
+    love.graphics.draw(self.image, xx, yy, rr, sx, sy, ox, oy, 0, 0)
 end
 
-return Enemi
+return Enemy
