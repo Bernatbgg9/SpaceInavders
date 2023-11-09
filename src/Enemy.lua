@@ -10,49 +10,46 @@ local skinMalos = { "src/textures/malo1.png", "src/textures/malo.png", "src/text
 
 function Enemy:new()
     Enemy.super.new(self, skinMalos[math.random(1, 3)], 30, 30, 50, 1, 0)
-    self.position.x = 30
-    self.position.y = 30
+    self.position.x = w/5.9
+    self.position.y = 50
     self.speed      = 250
     self.forward    = Vector.new(1, 0)
     self.fila       = 1
-    self.stop = true
 end
 
 function Enemy:update(dt)
-    stop = self.stop
-
     timer = timer - dt
 
     if stop then
-        if self.position.x < 730 and self.position.y == 30 then
+        if self.position.x < w/1.25 and self.position.y == 50 then
             self.position = self.position + self.forward * self.speed * dt
-        elseif self.position.x > 730 and self.position.y < 90 then
+        elseif self.position.x > w/1.25 and self.position.y < 90 then
             self.position.y = self.position.y + self.speed * dt
-        elseif self.position.x > 30 and self.position.y > 90 and self.fila == 1 then
+        elseif self.position.x > w/5.9 and self.position.y > 90 and self.fila == 1 then
             self.position = self.position - self.forward * self.speed * dt
-        elseif self.position.x < 30 and self.position.y < 150 then
+        elseif self.position.x < w/5.9 and self.position.y < 150 then
             self.position.y = self.position.y + self.speed * dt
             self.fila = 2
-        elseif self.position.x < 730 and self.position.y > 150 and self.fila == 2 then
+        elseif self.position.x < w/1.25 and self.position.y > 150 and self.fila == 2 then
             self.position = self.position + self.forward * self.speed * dt
-        elseif self.position.x > 730 and self.position.y < 210 then
+        elseif self.position.x > w/1.25 and self.position.y < 210 then
             self.position.y = self.position.y + self.speed * dt
             self.fila = 3
-        elseif self.position.x > 30 and self.position.y > 210 and self.fila == 3 then
+        elseif self.position.x > w/5.9 and self.position.y > 210 and self.fila == 3 then
             self.position = self.position - self.forward * self.speed * dt
-        elseif self.position.x < 30 and self.position.y < 270 then
+        elseif self.position.x < w/5.9 and self.position.y < 270 then
             self.position.y = self.position.y + self.speed * dt
             self.fila = 4
-        elseif self.position.x < 730 and self.position.y > 270 and self.fila == 4 then
+        elseif self.position.x < w/1.25 and self.position.y > 270 and self.fila == 4 then
             self.position = self.position + self.forward * self.speed * dt
-        elseif self.position.x > 730 and self.position.y < 330 then
+        elseif self.position.x > w/1.25 and self.position.y < 330 then
             self.position.y = self.position.y + self.speed * dt
             self.fila = 5
-        elseif self.position.x > 30 and self.position.y > 330 and self.fila == 5 then
+        elseif self.position.x > w/5.9 and self.position.y > 330 and self.fila == 5 then
             self.position = self.position - self.forward * self.speed * dt
-        elseif self.position.x < 30 and self.position.y < 390 then
+        elseif self.position.x < w/5.9 and self.position.y < 540 then
             self.position.y = self.position.y + self.speed * dt
-        elseif self.position.y > 390 then
+        elseif self.position.y > 540 then
             stop = false
             for k, v in ipairs(actorList) do
                 if v:is(Spawner) then
@@ -94,5 +91,11 @@ function Enemy:draw()
     local rr = self.rot
     love.graphics.draw(self.image, xx, yy, rr, sx, sy, ox, oy, 0, 0)
 end
+
+function Enemy:keyPressed(key)
+    if key == "escape" then
+        stop = false
+    end
+  end
 
 return Enemy

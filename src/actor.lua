@@ -37,7 +37,7 @@ function Actor:checkCollision(aa)
   local b_top = aa.position.y - aa.height / 2
   local b_bottom = aa.position.y + aa.height / 2
 
-  if a_left < b_right and a_right > b_left and a_top < b_bottom  and a_bottom > b_top then
+  if a_left < b_right and a_right > b_left and a_top < b_bottom and a_bottom > b_top then
     return true
   else
     return false

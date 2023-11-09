@@ -19,11 +19,11 @@ function BalaPlayer:update(dt)
    end
    for k, v in pairs(actorList) do
       if v:is(Enemy) then
-        if self:checkCollision(v) then
-          table.remove(actorList, k)
-        end
+         if self:checkCollision(v) then
+            table.remove(actorList, k)
+         end
       end
-    end
+   end
 end
 
 function BalaPlayer:draw()

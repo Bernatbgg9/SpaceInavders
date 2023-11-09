@@ -3,6 +3,7 @@ Enemy = Enemy or require "src/Enemy"
 Boss = Boss or require "src/Boss"
 Hud = Hud or require "src/Hud"
 Spawner = Spawner or require "src/Spawner"
+Pantalla = Pantalla or require "src/Pantalla"
 
 
 actorList = {} --Lista de elementos de juego
@@ -10,12 +11,14 @@ actorList = {} --Lista de elementos de juego
 local timer = 0.5
 
 function love.load()
-    love.window.setFullscreen(true, "exclusive")
+    --love.window.setFullscreen(true, "exclusive")
     w, h = love.graphics.getDimensions()
-    local p = Player()
-    table.insert(actorList, p)
     local h = Hud()
     table.insert(actorList, h)
+    local pa = Pantalla()
+    table.insert(actorList, pa)
+    local p = Player()
+    table.insert(actorList, p)
     local s = Spawner()
     table.insert(actorList, s)
     local e = Enemy()
@@ -43,7 +46,6 @@ function love.draw()
     for _, v in ipairs(actorList) do
         v:draw()
     end
-    love.graphics.line(0, 400, w, 400)
 end
 
 function love.keypressed(key)
@@ -52,6 +54,9 @@ function love.keypressed(key)
             v:keyPressed(key)
         end
         if v:is (Hud) then
+            v:keyPressed(key)
+        end
+        if v:is(Enemy) then
             v:keyPressed(key)
         end
     end
