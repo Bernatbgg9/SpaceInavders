@@ -2,7 +2,7 @@ Actor = Actor or require "src/actor"
 local BalaPlayer = Actor:extend()
 
 function BalaPlayer:new(x, y)
-   BalaPlayer.super.new(self, "src/textures/balaBueno.png", x, y, 200, 0, 1)
+   BalaPlayer.super.new(self, "src/textures/balaBueno.png", x, y, 300, 0, 1)
    self.scale.x = 2
    self.scale.y = 2
 end
