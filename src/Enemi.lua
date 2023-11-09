@@ -3,8 +3,10 @@ local Enemi = Actor:extend()
 
 local stop = true
 
+local skinMalos = {"src/textures/malo1.png","src/textures/malo.png","src/textures/malo2.png"}
+
 function Enemi:new(x, y)
-    Enemi.super.new(self, "src/textures/si.png", 30, 30, 50, 1, 0)
+    Enemi.super.new(self, skinMalos[math.random(1,3)], 30, 30, 50, 1, 0)
     self.position.x = 30
     self.position.y = 30
     self.speed      = 250
@@ -56,7 +58,7 @@ function Enemi:draw()
     local sx = self.scale.x
     local sy = self.scale.y
     local rr = self.rot
-    love.graphics.draw(self.image, xx, yy, rr, sx, sy, ox, oy, 0, 0)
+    love.graphics.draw(self.image, xx, yy, rr, 4, 4, ox, oy, 0, 0)
 end
 
 return Enemi
