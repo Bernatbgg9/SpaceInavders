@@ -23,20 +23,27 @@ function love.load()
 end
 
 function love.update(dt)
-
     timer = timer - dt
 
     for _, v in ipairs(actorList) do
         v:update(dt)
-        --[[if v:is(Enemy) then
+        if v:is(Enemy) then
             if timer <= 0 then
                 local e = Enemy()
                 table.insert(actorList, e)
                 timer = 0.5
             end
-        end]]
+        end
+        if v:is(Hud) then
+            if v.vidas <= 0 then
+                for kk, vv in pairs(actorList) do
+                    if vv:is(Bala) or vv:is(BalaPlayer) or vv:is(Player) or vv:is(Enemy) then
+                        table.remove(actorList, kk)
+                    end
+                end
+            end
+        end
     end
-
 end
 
 function love.draw()
@@ -51,7 +58,7 @@ function love.keypressed(key)
         if v:is(Player) then
             v:keyPressed(key)
         end
-        if v:is (Hud) then
+        if v:is(Hud) then
             v:keyPressed(key)
         end
     end
