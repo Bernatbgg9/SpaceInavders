@@ -15,9 +15,12 @@ function Enemy:new()
     self.speed      = 250
     self.forward    = Vector.new(1, 0)
     self.fila       = 1
+    self.stop = true
 end
 
 function Enemy:update(dt)
+    stop = self.stop
+
     timer = timer - dt
 
     if stop then
