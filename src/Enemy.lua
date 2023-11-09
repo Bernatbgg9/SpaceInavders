@@ -57,25 +57,25 @@ function Enemy:update(dt)
                 end
             end
         end
-    end
-    local enemy = {}
+        local enemy = {}
 
 
-    for k, v in ipairs(actorList) do
-        if v:is(Enemy) then
-            table.insert(enemy, Enemy)
+        for k, v in ipairs(actorList) do
+            if v:is(Enemy) then
+                table.insert(enemy, Enemy)
+            end
         end
-    end
 
-    if timer <= 0 then
-        local num = math.random(1, #enemy)
-        for k, v in ipairs(enemy) do
-            if k == num then
-                local bala = Bala()
-                bala.position.x = self.position.x
-                bala.position.y = self.position.y
-                table.insert(actorList, bala)
-                timer = 7
+        if timer <= 0 then
+            local num = math.random(1, #enemy)
+            for k, v in ipairs(enemy) do
+                if k == num then
+                    local bala = Bala()
+                    bala.position.x = self.position.x
+                    bala.position.y = self.position.y
+                    table.insert(actorList, bala)
+                    timer = 7
+                end
             end
         end
     end
