@@ -6,3 +6,12 @@
 9/11 Cambios Bala y Enemy
 9/11 Movimiento y disparo del player
 9/11 Spanwer y arreglos
+        if v:is(Hud) then
+            if v.vidas <= 0 then
+                for kk, vv in pairs(actorList) do
+                    if vv:is(Bala) or vv:is(BalaPlayer) or vv:is(Player) or vv:is(Enemy) then
+                        table.remove(actorList, kk)
+                    end
+                end
+            end
+        end

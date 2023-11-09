@@ -12,6 +12,11 @@ function Bala:update(dt)
     for i, v in pairs(actorList) do
       if (v == self) then
         table.remove(actorList, i)
+        for kk, vv in pairs(actorList) do
+            if vv:is(Hud) then
+              vv.vidas = vv.vidas - 1
+            end
+          end
       end
     end
   end
