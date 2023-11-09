@@ -43,7 +43,7 @@ function love.draw()
     for _, v in ipairs(actorList) do
         v:draw()
     end
-    love.graphics.line(0, h, w, h)
+    love.graphics.line(0, 400, w, 400)
 end
 
 function love.keypressed(key)
