@@ -1,6 +1,7 @@
 Player = Player or require "src/Player"
 Enemi = Enemi or require "src/Enemi"
 Boss = Boss or require "src/Boss"
+Hud = Hud or require "src/Hud"
 
 
 actorList = {} --Lista de elementos de juego
@@ -12,10 +13,10 @@ function love.load()
     w, h = love.graphics.getDimensions()
     local p = Player()
     table.insert(actorList, p)
-    local b = Boss()
-    table.insert(actorList, b)
     local e = Enemi()
     table.insert(actorList, e)
+    local h = Hud()
+    table.insert(actorList, h)
 end
 
 function love.update(dt)
