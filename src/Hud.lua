@@ -60,7 +60,17 @@ function HUD:draw()
     love.graphics.setColor(0, 0, 0)
   end
   if self.vidas <= 0 then
+<<<<<<< HEAD
     love.graphics.print("YOU DIED", self.ppx, self.pppy)
+=======
+   love.graphics.print("YOU DIED", self.ppx, self.pppy )
+   self.pause = true
+   for k, v in ipairs(actorList) do
+    if v:is(Enemy) then
+      v.stop = false
+    end
+  end
+>>>>>>> 79868653495a65f2dc10019c9fa3f9986baba887
   end
 end
 
