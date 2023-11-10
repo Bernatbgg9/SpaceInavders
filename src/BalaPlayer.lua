@@ -17,11 +17,13 @@ function BalaPlayer:update(dt)
          end
       end
    end
+   
    for k, v in pairs(actorList) do
       if v:is(Enemy) then
          if self:checkCollision(v) then
             table.remove(actorList, k)
          end
+
         if self:checkCollision(v) then
           table.remove(actorList, k)
           for kk, vv in pairs(actorList) do
@@ -30,6 +32,16 @@ function BalaPlayer:update(dt)
             end
           end
         end
+
+
+         if self:checkCollision(v) then
+            table.remove(actorList, k)
+            for kk, vv in pairs(actorList) do
+               if vv:is(Hud) then
+                  vv.p = vv.p + 1
+               end
+            end
+         end
       end
    end
 end

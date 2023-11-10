@@ -38,17 +38,21 @@ function HUD:update(dt)
   self.pp = ("POINTS: " .. self.p)
 end
 
+
 function HUD:draw()
 
   if self.game == "menu" then
-      love.graphics.setBackgroundColor(0, 0, 0)
-      love.graphics.setFont(title)
-      love.graphics.print("SPACE INVADERS", 0, 150)
-      love.graphics.setFont(font1)
-      love.graphics.print("PULSA ENTER PARA JUGAR", 0, 290)
-      love.graphics.print("PULSA I PARA VER LAS NORMAS DEL JUEGO", 0, 350)    
-      love.graphics.print("PULSA ESC PARA SALIR", 0, 410)    
+    love.graphics.setBackgroundColor(0, 0, 0)
+    love.graphics.setFont(title)
+    love.graphics.print("SPACE INVADERS", 0, 150)
+    love.graphics.setFont(font1)
+    love.graphics.print("PULSA ENTER PARA JUGAR", 0, 290)
+    love.graphics.print("PULSA I PARA VER LAS NORMAS DEL JUEGO", 0, 350)    
+    love.graphics.print("PULSA ESC PARA SALIR", 0, 410)    
+    
+
   end
+
 
   if self.game == "instrucciones" then
     love.graphics.setBackgroundColor(0, 0, 0)
@@ -95,7 +99,7 @@ function HUD:draw()
 
   if self.game == "gameover" then
   love.graphics.print("YOU DIED", self.ppx, self.pppy)
-    self.pause = true
+    love.graphics.print("YOU DIED", self.ppx, self.pppy)
     for k, v in ipairs(actorList) do
       if v:is(Enemy) then
         v.stop = false
@@ -157,12 +161,12 @@ function HUD:keyPressed(key)
         self.eraseMenu = true
         for k, v in ipairs(actorList) do
           if v:is(Enemy) then
-            v.stop = true
+            v.stop = false
           end
         end
         for k,v in ipairs(actorList) do
           if v:is(Spawner) then
-            v.stop = true
+            v.stop = false
           end
         end
       end

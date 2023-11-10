@@ -6,9 +6,8 @@
 9/11 Cambios Bala y Enemy
 9/11 Movimiento y disparo del player
 9/11 Spanwer y arreglos
-<<<<<<< HEAD
 9/11 Añadir Clase Pantalla y modifciar Enemy
-=======
 9/11 suma de puntos i resta de vidas (aun queda)
->>>>>>> 24590709618c07d1ae1a84d92a1756748e51d65b
 10/11 Añadido estados y menu principal en el HUD + retoques menu pausa (falta hacer: que las balas se detengan al pausar)
+10/11 Corecion Spawner
+10/11 suma de puntos i resta de vida hecho

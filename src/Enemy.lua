@@ -100,6 +100,11 @@ function Enemy:keyPressed(key)
     end
     if key == "return" then
         stop = false
+        for k, v in ipairs(actorList) do
+            if v:is(Spawner) then
+                v.stop = true
+            end
+        end
     end
   end
 
