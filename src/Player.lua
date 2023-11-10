@@ -15,6 +15,20 @@ function Player:update(dt)
   if love.keyboard.isDown("a") then
     self.position.x = self.position.x - self.speed * dt
   end
+  for k, v in pairs(actorList) do
+    if v:is(Bala) then
+        if self:checkCollision(v) then
+            table.remove(actorList, k)
+            for kk, vv in pairs(actorList) do
+                if vv:is(Hud) then
+                    if vv.vidas > 0 then
+                        vv.vidas = vv.vidas - 1
+                    end
+                end
+            end
+        end
+    end
+end
 end
 
 function Player:draw()
