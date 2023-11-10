@@ -30,7 +30,14 @@ end
 
 function HUD:update(dt)
   self.hp = ("HP: " .. self.vidas)
+<<<<<<< HEAD
   self.pp = ("POINTS: " .. self.p)
+=======
+
+
+  self.pp = ("POINTS: " .. self.p)
+
+>>>>>>> 20a3b00f8085205c409c2167134436e09350fec3
 end
 
 function HUD:draw()
@@ -61,6 +68,10 @@ function HUD:draw()
   end
   if self.vidas <= 0 then
     love.graphics.print("YOU DIED", self.ppx, self.pppy)
+<<<<<<< HEAD
+=======
+
+>>>>>>> 20a3b00f8085205c409c2167134436e09350fec3
     self.pause = true
     for k, v in ipairs(actorList) do
       if v:is(Enemy) then

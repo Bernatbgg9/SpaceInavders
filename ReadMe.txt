@@ -11,4 +11,8 @@
 =======
 9/11 suma de puntos i resta de vidas (aun queda)
 >>>>>>> 24590709618c07d1ae1a84d92a1756748e51d65b
+<<<<<<< HEAD
 10/11 Corecion Spawner
+=======
+10/11 suma de puntos i resta de vida hecho
+>>>>>>> 20a3b00f8085205c409c2167134436e09350fec3

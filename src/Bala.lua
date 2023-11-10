@@ -13,6 +13,10 @@ function Bala:update(dt)
             if (v == self) then
                 table.remove(actorList, i)
             end
+<<<<<<< HEAD
+=======
+
+>>>>>>> 20a3b00f8085205c409c2167134436e09350fec3
             --Bala.super.update(self, dt)
             self.position.y = self.position.y + self.speed * dt
             if self.position.x >= w or self.position.x < 0 or self.position.y >= h or self.position.y < 0 then
@@ -22,6 +26,7 @@ function Bala:update(dt)
                     end
                 end
             end
+<<<<<<< HEAD
             local eliminar = {}
             for k, v in pairs(actorList) do
                 if v:is(self) then
@@ -49,6 +54,35 @@ function Bala:update(dt)
             end
         end
     end
+=======
+            -- local eliminar = {}
+        end
+    end
+    --local eliminar = {}
+    --[[for k, v in pairs(actorList) do
+        if v:is(Player) then
+            if self:checkCollision(v) then
+                table.remove(actorList, k)
+               -- table.insert(eliminar, k)
+                for kk, vv in pairs(actorList) do
+                    if vv:is(Hud) then
+                        if vv.vidas > 0 then
+                            vv.vidas = vv.vidas - 1
+                        end
+                    end
+                end
+            end
+            --[[if v:is(Enemy) then
+            if self:checkCollision(v) then
+                          table.remove(actorList, k)
+        end
+    end ]]
+
+
+    --[[for k, v in pairs(eliminar) do
+        table.remove(actorList, v)
+      end]]
+>>>>>>> 20a3b00f8085205c409c2167134436e09350fec3
 end
 
 function Bala:draw()
