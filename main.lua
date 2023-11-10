@@ -22,8 +22,6 @@ function love.load()
     table.insert(actorList, s)
     local e = Enemy()
     table.insert(actorList, e)
-    local b = Bala()
-    table.insert(actorList, b)
 end
 
 function love.update(dt)
