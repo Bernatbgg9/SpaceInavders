@@ -30,20 +30,14 @@ end
 
 function HUD:update(dt)
   self.hp = ("HP: " .. self.vidas)
-<<<<<<< HEAD
-=======
   self.pp = ("POINTS: " .. self.p)
->>>>>>> 24590709618c07d1ae1a84d92a1756748e51d65b
 end
 
 function HUD:draw()
   love.graphics.setFont(font)
   love.graphics.print(self.hp, self.hpx, self.hpy)
   love.graphics.print(self.pp, self.ppx, self.ppy)
-<<<<<<< HEAD
-=======
 
->>>>>>> 24590709618c07d1ae1a84d92a1756748e51d65b
   if self.pause == true then
     love.graphics.setColor(255, 255, 255)
     if self.eraseMenu == true then
@@ -67,15 +61,12 @@ function HUD:draw()
   end
   if self.vidas <= 0 then
     love.graphics.print("YOU DIED", self.ppx, self.pppy)
-<<<<<<< HEAD
-=======
     self.pause = true
     for k, v in ipairs(actorList) do
       if v:is(Enemy) then
         v.stop = false
       end
     end
->>>>>>> 24590709618c07d1ae1a84d92a1756748e51d65b
   end
 end
 

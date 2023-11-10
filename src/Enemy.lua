@@ -51,11 +51,6 @@ function Enemy:update(dt)
             self.position.y = self.position.y + self.speed * dt
         elseif self.position.y > 540 then
             stop = false
-            for k, v in ipairs(actorList) do
-                if v:is(Spawner) then
-                    v.stop = false
-                end
-            end
         end
         local enemy = {}
 
@@ -95,6 +90,11 @@ end
 function Enemy:keyPressed(key)
     if key == "escape" then
         stop = false
+        for k, v in ipairs(actorList) do
+            if v:is(Spawner) then
+                v.stop = false
+            end
+        end
     end
   end
 

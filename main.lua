@@ -8,7 +8,6 @@ Pantalla = Pantalla or require "src/Pantalla"
 
 actorList = {} --Lista de elementos de juego
 
-local timer = 0.5
 
 function love.load()
     --love.window.setFullscreen(true, "exclusive")
@@ -26,17 +25,8 @@ function love.load()
 end
 
 function love.update(dt)
-    timer = timer - dt
-
     for _, v in ipairs(actorList) do
         v:update(dt)
-        if v:is(Enemy) then
-            if timer <= 0 then
-                local e = Enemy()
-                table.insert(actorList, e)
-                timer = 0.5
-            end
-        end
         if v:is(Hud) then
             if v.vidas <= 0 then
                 for kk, vv in pairs(actorList) do
@@ -60,10 +50,10 @@ function love.keypressed(key)
         if v:is(Player) then
             v:keyPressed(key)
         end
-        if v:is(Hud) then
+        if v:is(Enemy) then
             v:keyPressed(key)
         end
-        if v:is(Enemy) then
+        if v:is(Hud) then
             v:keyPressed(key)
         end
     end
