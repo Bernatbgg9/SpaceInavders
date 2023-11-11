@@ -50,10 +50,12 @@ function love.draw()
             if vv.game == "game" then
                 for _, v in ipairs(actorList) do
                     v:draw()
+                    
                 end
             end
         end
     end
+    
 end
 
 function love.keypressed(key)

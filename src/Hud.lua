@@ -14,23 +14,30 @@ function HUD:new()
   self.hpy = 10
   self.p = 0
   self.pp = ("POINTS: " .. self.p)
-  self.ppx = 650
-  self.ppy = 10
+  self.ppx = 10
+  self.ppy = 40
   self.pppy = 300
-  self.rpx = 40
-  self.rpy = 50
-  self.rx = 750
-  self.ry = 500
+  self.rpx = w/7 -2
+  self.rpy = 8
+  self.rx = w/1.2-w/7 +3
+  self.ry = 544
   self.pause = false
-  self.pausex = 350
-  self.pausex2 = 340
-  self.pausex3 = 360
+  self.pausex = w/1.2 /2
+  self.pausex2 = w/1.2 /2 -18
+  self.pausex3 = w/1.2 /2 +12
   self.pausey = 100
   self.pausey2 = 350
   self.pausey3 = 450
   self.redLightDown = false
   self.redLightUp = true
   self.eraseMenu = false
+  self.menux = 10
+  self.menu1y = 150
+  self.menu2y = 290
+  self.menu3y = 350
+  self.menu4y = 190
+  self.menu5y = 230
+  self.menu6y = 410
 end
 
 function HUD:update(dt)
@@ -43,25 +50,28 @@ function HUD:draw()
 
   if self.game == "menu" then
     love.graphics.setBackgroundColor(0, 0, 0)
+    love.graphics.setColor(0, 255, 0)
     love.graphics.setFont(title)
-    love.graphics.print("SPACE INVADERS", 0, 150)
+    love.graphics.print("SPACE INVADERS", self.menux, self.menu1y)
     love.graphics.setFont(font1)
-    love.graphics.print("PULSA ENTER PARA JUGAR", 0, 290)
-    love.graphics.print("PULSA I PARA VER LAS NORMAS DEL JUEGO", 0, 350)    
-    love.graphics.print("PULSA ESC PARA SALIR", 0, 410)    
-    
+    love.graphics.print("PULSA ENTER PARA JUGAR", self.menux, self.menu2y)
+    love.graphics.print("PULSA I PARA VER LAS NORMAS DEL JUEGO", self.menux, self.menu3y)    
+    love.graphics.print("PULSA ESC PARA SALIR", self.menux, self.menu6y)    
+    love.graphics.setColor(255, 255, 255)
 
   end
 
 
   if self.game == "instrucciones" then
     love.graphics.setBackgroundColor(0, 0, 0)
+    love.graphics.setColor(0, 255, 0)
     love.graphics.setFont(font2)
-    love.graphics.print("- Destruye tantas naves enemigas como puedas", 0, 150)
-    love.graphics.print("- No dejes que los enemigos lleguen a la linea blanca", 0, 190)
-    love.graphics.print("- Supera todas las rondas para ganar", 0, 230)
+    love.graphics.print("- Destruye tantas naves enemigas como puedas", self.menux, self.menu1y)
+    love.graphics.print("- No dejes que los enemigos lleguen a la linea blanca", self.menux, self.menu4y)
+    love.graphics.print("- Supera todas las rondas para ganar", self.menux, self.menu5y)
     love.graphics.setFont(font1)
-    love.graphics.print("PULSA ENTER PARA VOLVER", 0, 410)
+    love.graphics.print("PULSA ENTER PARA VOLVER", self.menux, self.menu6y)
+    love.graphics.setColor(255, 255, 255)
   end
 
   if self.game == "game" then
@@ -71,6 +81,9 @@ function HUD:draw()
     love.graphics.print(self.pp, self.ppx, self.ppy)
 
     if self.pause == true then
+      love.graphics.setFont(font)
+      love.graphics.print(self.hp, self.hpx, self.hpy)
+      love.graphics.print(self.pp, self.ppx, self.ppy)
       love.graphics.setColor(255, 255, 255)
       if self.eraseMenu == false then
         love.graphics.rectangle("fill", self.rpx, self.rpy, self.rx, self.ry)
@@ -147,6 +160,7 @@ function HUD:keyPressed(key)
         end
       end
     end
+  
 
     if self.pause == true then
       if key == "up" then
@@ -159,6 +173,7 @@ function HUD:keyPressed(key)
       end
       if key == "return" and self.redLightUp == true then
         self.eraseMenu = true
+        self.game = "game"
         for k, v in ipairs(actorList) do
           if v:is(Enemy) then
             v.stop = false
@@ -175,6 +190,7 @@ function HUD:keyPressed(key)
       end
     end
   end
+  
 
   if self.game == "gameover" then
     if love.keyboard.isDown("escape") then
