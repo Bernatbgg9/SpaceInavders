@@ -2,7 +2,7 @@ Actor = Actor or require "src/actor"
 local Enemy = Actor:extend()
 local Bala = Bala or require "src/Bala"
 
-local stop = true
+local stop = false
 
 local timer = 7
 
@@ -20,7 +20,7 @@ end
 function Enemy:update(dt)
     timer = timer - dt
 
-    if stop then
+    if stop == false then
         if self.position.x < w/1.25 and self.position.y == 50 then
             self.position = self.position + self.forward * self.speed * dt
         elseif self.position.x > w/1.25 and self.position.y < 90 then
@@ -51,11 +51,6 @@ function Enemy:update(dt)
             self.position.y = self.position.y + self.speed * dt
         elseif self.position.y > 540 then
             stop = false
-            for k, v in ipairs(actorList) do
-                if v:is(Spawner) then
-                    v.stop = false
-                end
-            end
         end
         local enemy = {}
 
@@ -79,6 +74,7 @@ function Enemy:update(dt)
             end
         end
     end
+
 end
 
 function Enemy:draw()
@@ -93,8 +89,22 @@ function Enemy:draw()
 end
 
 function Enemy:keyPressed(key)
+    
     if key == "escape" then
+        stop = true
+        for k, v in ipairs(actorList) do
+            if v:is(Spawner) then
+                v.stop = false
+            end
+        end
+    end
+    if key == "return" then
         stop = false
+        for k, v in ipairs(actorList) do
+            if v:is(Spawner) then
+                v.stop = true
+            end
+        end
     end
   end
 

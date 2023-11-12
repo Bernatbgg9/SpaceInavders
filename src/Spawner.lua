@@ -5,7 +5,7 @@ local Spawner = Actor:extend()
 function Spawner:new(_t)
     self.tFinal = _t or 0.5
     self.tActual = 0
-    self.stop = true
+    self.stop = false
 end
 
 function Spawner:update(dt)
@@ -16,12 +16,13 @@ function Spawner:update(dt)
             end
         end
     end]]
-
-    self.tActual = self.tActual + dt
-    if self.tActual > self.tFinal and self.stop then
-        self.tActual = 0
-        local a = Enemy()
-        table.insert(actorList, a)
+    if self.stop then
+        self.tActual = self.tActual + dt
+        if self.tActual > self.tFinal then
+            self.tActual = 0
+            local a = Enemy()
+            table.insert(actorList, a)
+        end
     end
 end
 

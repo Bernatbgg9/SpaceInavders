@@ -7,37 +7,36 @@ function Bala:new()
 end
 
 function Bala:update(dt)
-  --Bala.super.update(self, dt)
-  if self.stop == false then
-  self.position.y = self.position.y + self.speed * dt
-  if self.position.x >= w or self.position.x < 0 or self.position.y >= h or self.position.y < 0 then
-    for i, v in pairs(actorList) do
-      if (v == self) then
-        table.remove(actorList, i)
-      end
-
     --Bala.super.update(self, dt)
-    self.position.y = self.position.y + self.speed * dt
-    if self.position.x >= w or self.position.x < 0 or self.position.y >= h or self.position.y < 0 then
-        for i, v in pairs(actorList) do
-            if (v == self) then
-                table.remove(actorList, i)
-            end
+    if self.stop == false then
+        self.position.y = self.position.y + self.speed * dt
+        if self.position.x >= w or self.position.x < 0 or self.position.y >= h or self.position.y < 0 then
+            for i, v in pairs(actorList) do
+                if (v == self) then
+                    table.remove(actorList, i)
+                end
 
-            --Bala.super.update(self, dt)
-            self.position.y = self.position.y + self.speed * dt
-            if self.position.x >= w or self.position.x < 0 or self.position.y >= h or self.position.y < 0 then
-                for i, v in pairs(actorList) do
-                    if (v == self) then
-                        table.remove(actorList, i)
+                --Bala.super.update(self, dt)
+                self.position.y = self.position.y + self.speed * dt
+                if self.position.x >= w or self.position.x < 0 or self.position.y >= h or self.position.y < 0 then
+                    for i, v in pairs(actorList) do
+                        if (v == self) then
+                            table.remove(actorList, i)
+                        end
+
+                        --Bala.super.update(self, dt)
+                        self.position.y = self.position.y + self.speed * dt
+                        if self.position.x >= w or self.position.x < 0 or self.position.y >= h or self.position.y < 0 then
+                            for i, v in pairs(actorList) do
+                                if (v == self) then
+                                    table.remove(actorList, i)
+                                end
+                            end
+                        end
                     end
                 end
             end
-
-        end
-    end
-end
-            self.eliminar = {}
+            --self.eliminar = {}
             for k, v in pairs(actorList) do
                 if v:is(self) then
                     for kk, vv in pairs(actorList) do
@@ -59,19 +58,14 @@ end
                     end
                 end
             end
-            for k, v in pairs(self.eliminar) do
-                table.remove(actorList, k)
-            end
+           
         end
     end
-    for k, v in pairs(self.eliminar) do
+    --[[for k, v in pairs(self.eliminar) do
         table.remove(actorList, k)
     end
-    -- local eliminar = {}
+    -- local eliminar = {}]]
 end
-
-
-
 
 --local eliminar = {}
 --[[for k, v in pairs(actorList) do
@@ -111,13 +105,12 @@ function Bala:draw()
 end
 
 function Bala:keyPressed(key)
-    
     if key == "escape" then
         self.stop = true
     end
     if key == "return" then
         self.stop = false
     end
-  end
+end
 
 return Bala

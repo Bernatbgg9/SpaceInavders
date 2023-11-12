@@ -6,10 +6,14 @@
 9/11 Cambios Bala y Enemy
 9/11 Movimiento y disparo del player
 9/11 Spanwer y arreglos
-<<<<<<< HEAD
 9/11 Añadir Clase Pantalla y modifciar Enemy
-=======
 9/11 suma de puntos i resta de vidas (aun queda)
->>>>>>> 24590709618c07d1ae1a84d92a1756748e51d65b
+10/11 Añadido estados y menu principal en el HUD + retoques menu pausa (falta hacer: que las balas se detengan al pausar)
+10/11 Corecion Spawner
 10/11 suma de puntos i resta de vida hecho
+<<<<<<< HEAD
 12/11 tamaño nave
+=======
+11/11 En el HUD solo falta arreglar un problema: La segunda vez que pausas el juego no te sale el menu de pausa. Falta hacer: que las balas se detengan al pausar
+estaría bien poner un limite de movimento en la nave y un cooldown de disparo. Falta implementar rondas y la bossfight
+>>>>>>> 8e928c70c5c9628823a0ac270400c4f7d95238f6
