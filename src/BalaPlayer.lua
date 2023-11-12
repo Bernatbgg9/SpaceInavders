@@ -24,6 +24,16 @@ function BalaPlayer:update(dt)
             table.remove(actorList, k)
          end
 
+        if self:checkCollision(v) then
+          table.remove(actorList, k)
+          for kk, vv in pairs(actorList) do
+            if vv:is(Hud) then
+              vv.p = vv.p + 1
+            end
+          end
+        end
+
+
          if self:checkCollision(v) then
             table.remove(actorList, k)
             for kk, vv in pairs(actorList) do
