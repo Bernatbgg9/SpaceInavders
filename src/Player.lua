@@ -1,11 +1,13 @@
 Actor = Actor or require "src/actor"
 BalaPlayer = BalaPlayer or require "src/BalaPlayer"
+Explosion = Explosion or require "src/Explosion"
 local Player = Actor:extend()
 
 function Player:new()
   Player.super.new(self, "src/textures/naveXetada.png", w / 2, 600, 300, 1, 0)
   self.hp = 5
   self.points = 0
+  self.explosionDone = false
 end
 
 function Player:update(dt)
@@ -22,8 +24,14 @@ function Player:update(dt)
           self.position.x = w / 6
         end
         if self.position.x < w / 6 then
-          self.position.x =  w / 1.25
+          self.position.x = w / 1.25
         end
+      end
+      if v.vidas <= 0 then
+        local e = Explosion:extend()
+        e:new(self.position.x, self.position.y)
+        table.insert(actorList, e)
+        self.explosionDone = true
       end
     end
     if v:is(Bala) then
