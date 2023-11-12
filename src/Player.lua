@@ -4,7 +4,7 @@ Explosion = Explosion or require "src/Explosion"
 local Player = Actor:extend()
 
 function Player:new()
-  Player.super.new(self, "src/textures/nave.png", 400, 500, 200, 1, 0)
+  Player.super.new(self, "src/textures/naveXetada.png", 400, 500, 200, 1, 0)
   self.hp = 5
   self.points = 0
   self.explosionDone = false
