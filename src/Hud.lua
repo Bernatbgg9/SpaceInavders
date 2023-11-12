@@ -38,6 +38,10 @@ function HUD:new()
   self.menu4y = 190
   self.menu5y = 230
   self.menu6y = 410
+  self.gameEnd = false
+  self.gameoverx = 350
+  self.gameovery = 150
+  self.gameover2 = 400
 end
 
 function HUD:update(dt)
@@ -77,11 +81,14 @@ function HUD:draw()
   if self.game == "game" then
 
     love.graphics.setFont(font)
+    love.graphics.setColor(0,255,0)
     love.graphics.print(self.hp, self.hpx, self.hpy)
     love.graphics.print(self.pp, self.ppx, self.ppy)
+    love.graphics.setColor(255,255,255)
 
     if self.pause == true then
       love.graphics.setFont(font)
+      love.graphics.setColor(0,255,0)
       love.graphics.print(self.hp, self.hpx, self.hpy)
       love.graphics.print(self.pp, self.ppx, self.ppy)
       love.graphics.setColor(255, 255, 255)
@@ -111,8 +118,11 @@ function HUD:draw()
   end
 
   if self.game == "gameover" then
-  love.graphics.print("YOU DIED", self.ppx, self.pppy)
-    love.graphics.print("YOU DIED", self.ppx, self.pppy)
+    love.graphics.setColor(0, 255, 0)
+    love.graphics.setFont(title)
+    love.graphics.print("GAME OVER", self.gameoverx, self.gameovery)
+    love.graphics.setFont(font1) 
+    love.graphics.print("PULSA ENTER PARA SALIR", self.gameover2, self.menu6y)    
     for k, v in ipairs(actorList) do
       if v:is(Enemy) then
         v.stop = false
@@ -123,6 +133,7 @@ function HUD:draw()
 end
 
 function HUD:keyPressed(key)
+
   if self.game == "menu" then
     if love.keyboard.isDown ("return") then
         self.game = "game"
@@ -193,7 +204,7 @@ function HUD:keyPressed(key)
   
 
   if self.game == "gameover" then
-    if love.keyboard.isDown("escape") then
+    if key == "return" or key == "escape" then
       love.event.quit(0)
     end  
   end
