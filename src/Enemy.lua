@@ -2,7 +2,7 @@ Actor = Actor or require "src/actor"
 local Enemy = Actor:extend()
 local Bala = Bala or require "src/Bala"
 
-local stop = false
+local stop = true
 
 local timerDisparo = 7
 
@@ -22,7 +22,6 @@ function Enemy:update(dt)
     timerDisparo = timerDisparo - dt
     self.timerMovimento = self.timerMovimento - dt
 
-<<<<<<< HEAD
     if stop then
         self.position.y = self.position.y + self.speed * dt
 
@@ -58,41 +57,8 @@ function Enemy:update(dt)
                     v.fila = 1
                 end
             end
-=======
-    if stop == false then
-        if self.position.x < w/1.25 and self.position.y == 50 then
-            self.position = self.position + self.forward * self.speed * dt
-        elseif self.position.x > w/1.25 and self.position.y < 90 then
-            self.position.y = self.position.y + self.speed * dt
-        elseif self.position.x > w/5.9 and self.position.y > 90 and self.fila == 1 then
-            self.position = self.position - self.forward * self.speed * dt
-        elseif self.position.x < w/5.9 and self.position.y < 150 then
-            self.position.y = self.position.y + self.speed * dt
-            self.fila = 2
-        elseif self.position.x < w/1.25 and self.position.y > 150 and self.fila == 2 then
-            self.position = self.position + self.forward * self.speed * dt
-        elseif self.position.x > w/1.25 and self.position.y < 210 then
-            self.position.y = self.position.y + self.speed * dt
-            self.fila = 3
-        elseif self.position.x > w/5.9 and self.position.y > 210 and self.fila == 3 then
-            self.position = self.position - self.forward * self.speed * dt
-        elseif self.position.x < w/5.9 and self.position.y < 270 then
-            self.position.y = self.position.y + self.speed * dt
-            self.fila = 4
-        elseif self.position.x < w/1.25 and self.position.y > 270 and self.fila == 4 then
-            self.position = self.position + self.forward * self.speed * dt
-        elseif self.position.x > w/1.25 and self.position.y < 330 then
-            self.position.y = self.position.y + self.speed * dt
-            self.fila = 5
-        elseif self.position.x > w/5.9 and self.position.y > 330 and self.fila == 5 then
-            self.position = self.position - self.forward * self.speed * dt
-        elseif self.position.x < w/5.9 and self.position.y < 540 then
-            self.position.y = self.position.y + self.speed * dt
-        elseif self.position.y > 540 then
-            stop = false
->>>>>>> 8e928c70c5c9628823a0ac270400c4f7d95238f6
         end
-
+        
         if self.position.y >= 90 and self.position.y <= 150 and self.fila == 2 then
             self.position = self.position - self.forward * self.speed * dt
         elseif self.position.y >= 90 and self.position.y <= 150 and self.fila == 3 then
@@ -119,14 +85,14 @@ function Enemy:update(dt)
             self.position = self.position + self.forward * self.speed * dt
         end
 
-        --[[if self.position.y > 540 then
+        if self.position.y > 540 then
             stop = false
             for k, v in ipairs(actorList) do
                 if v:is(Spawner) then
                     v.stop = false
                 end
             end
-        end]]
+        end
         local enemy = {}
 
 
@@ -149,7 +115,6 @@ function Enemy:update(dt)
             end
         end
     end
-
 end
 
 function Enemy:draw()
@@ -164,7 +129,6 @@ function Enemy:draw()
 end
 
 function Enemy:keyPressed(key)
-    
     if key == "escape" then
         stop = true
         for k, v in ipairs(actorList) do
@@ -173,9 +137,6 @@ function Enemy:keyPressed(key)
             end
         end
     end
-<<<<<<< HEAD
-end
-=======
     if key == "return" then
         stop = false
         for k, v in ipairs(actorList) do
@@ -184,7 +145,7 @@ end
             end
         end
     end
-  end
->>>>>>> 8e928c70c5c9628823a0ac270400c4f7d95238f6
+end
+
 
 return Enemy

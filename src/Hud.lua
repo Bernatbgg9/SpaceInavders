@@ -43,13 +43,7 @@ end
 function HUD:update(dt)
   self.hp = ("HP: " .. self.vidas)
   self.pp = ("POINTS: " .. self.p)
-<<<<<<< HEAD
 
-
-  self.pp = ("POINTS: " .. self.p)
-
-=======
->>>>>>> 8e928c70c5c9628823a0ac270400c4f7d95238f6
 end
 
 
@@ -65,31 +59,11 @@ function HUD:draw()
     love.graphics.print("PULSA I PARA VER LAS NORMAS DEL JUEGO", self.menux, self.menu3y)    
     love.graphics.print("PULSA ESC PARA SALIR", self.menux, self.menu6y)    
     love.graphics.setColor(255, 255, 255)
-<<<<<<< HEAD
-    if self.eraseMenu == true then
-      love.graphics.rectangle("fill", self.rpx, self.rpy, self.rx, self.ry)
-    end
-    love.graphics.setColor(0, 0, 0)
-    love.graphics.print("PAUSE", self.pausex, self.pausey)
-    if self.redLightUp == true then
-      love.graphics.setColor(255, 0, 0)
-    else
-      love.graphics.setColor(0, 0, 0)
-    end
-    love.graphics.print("RESTART", self.pausex2, self.pausey2)
-    if self.redLightDown == true then
-      love.graphics.setColor(255, 0, 0)
-    else
-      love.graphics.setColor(0, 0, 0)
-    end
-    love.graphics.print("EXIT", self.pausex3, self.pausey3)
-    love.graphics.setColor(0, 0, 0)
   end
   if self.vidas <= 0 then
     love.graphics.print("YOU DIED", self.ppx, self.pppy)
 
     self.pause = true
-=======
 
   end
 
@@ -145,7 +119,6 @@ function HUD:draw()
   if self.game == "gameover" then
   love.graphics.print("YOU DIED", self.ppx, self.pppy)
     love.graphics.print("YOU DIED", self.ppx, self.pppy)
->>>>>>> 8e928c70c5c9628823a0ac270400c4f7d95238f6
     for k, v in ipairs(actorList) do
       if v:is(Enemy) then
         v.stop = false
