@@ -3,7 +3,7 @@ local Enemy = Enemy or require "src/Enemy"
 local Spawner = Actor:extend()
 
 function Spawner:new(_t)
-    self.tFinal = _t or 0.5
+    self.tFinal = _t or 1
     self.tActual = 0
     self.stop = true
 end

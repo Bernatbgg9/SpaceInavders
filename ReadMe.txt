@@ -16,3 +16,4 @@
 =======
 10/11 suma de puntos i resta de vida hecho
 >>>>>>> 20a3b00f8085205c409c2167134436e09350fec3
+12/11 Cambio Pantalla y Movimiento Enemy

@@ -3,7 +3,7 @@ BalaPlayer = BalaPlayer or require "src/BalaPlayer"
 local Player = Actor:extend()
 
 function Player:new()
-  Player.super.new(self, "src/textures/nave.png", 400, 500, 200, 1, 0)
+  Player.super.new(self, "src/textures/nave.png", w/2, 600, 200, 1, 0)
   self.hp = 5
   self.points = 0
 end
