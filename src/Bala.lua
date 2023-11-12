@@ -23,33 +23,8 @@ function Bala:update(dt)
                     end
                 end
             end
-            -- local eliminar = {}
         end
     end
-    --local eliminar = {}
-    --[[for k, v in pairs(actorList) do
-        if v:is(Player) then
-            if self:checkCollision(v) then
-                table.remove(actorList, k)
-               -- table.insert(eliminar, k)
-                for kk, vv in pairs(actorList) do
-                    if vv:is(Hud) then
-                        if vv.vidas > 0 then
-                            vv.vidas = vv.vidas - 1
-                        end
-                    end
-                end
-            end
-            --[[if v:is(Enemy) then
-            if self:checkCollision(v) then
-                          table.remove(actorList, k)
-        end
-    end ]]
-
-
-    --[[for k, v in pairs(eliminar) do
-        table.remove(actorList, v)
-      end]]
 end
 
 function Bala:draw()
