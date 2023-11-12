@@ -3,40 +3,42 @@ BalaPlayer = BalaPlayer or require "src/BalaPlayer"
 local Player = Actor:extend()
 
 function Player:new()
-  Player.super.new(self, "src/textures/naveXetada.png", w/2, 600, 200, 1, 0)
+  Player.super.new(self, "src/textures/naveXetada.png", w / 2, 600, 300, 1, 0)
   self.hp = 5
   self.points = 0
 end
 
 function Player:update(dt)
-  for k,v in ipairs(actorList) do
+  for k, v in ipairs(actorList) do
     if v:is(Hud) then
-        
-        if v.pause == false then
-          if love.keyboard.isDown("d") then
-            self.position.x = self.position.x + self.speed * dt
-          end
-          if love.keyboard.isDown("a") then
-            self.position.x = self.position.x - self.speed * dt
-          end
-          for k, v in pairs(actorList) do
-            if v:is(Bala) then
-                if self:checkCollision(v) then
-                    table.remove(actorList, k)
-                    for kk, vv in pairs(actorList) do
-                        if vv:is(Hud) then
-                            if vv.vidas > 0 then
-                                vv.vidas = vv.vidas - 1
-                            end
-                        end
-                    end
-                end
-            end
+      if v.pause == false then
+        if love.keyboard.isDown("d") then
+          self.position.x = self.position.x + self.speed * dt
         end
+        if love.keyboard.isDown("a") then
+          self.position.x = self.position.x - self.speed * dt
+        end
+        if self.position.x > w / 1.25 then
+          self.position.x = w / 6
+        end
+        if self.position.x < w / 6 then
+          self.position.x =  w / 1.25
+        end
+      end
+    end
+    if v:is(Bala) then
+      if self:checkCollision(v) then
+        table.remove(actorList, k)
+        for kk, vv in pairs(actorList) do
+          if vv:is(Hud) then
+            if vv.vidas > 0 then
+              vv.vidas = vv.vidas - 1
+            end
+          end
+        end
+      end
     end
   end
-  
-end
 end
 
 function Player:draw()
@@ -53,17 +55,16 @@ function Player:draw()
 end
 
 function Player:keyPressed(key)
-  for k,v in ipairs(actorList) do
+  for k, v in ipairs(actorList) do
     if v:is(Hud) then
-        
-        if v.pause == false then
-  if key == "space" then
-    local a = BalaPlayer(self.position.x, self.position.y)
-    table.insert(actorList, a)
+      if v.pause == false then
+        if key == "space" then
+          local a = BalaPlayer(self.position.x, self.position.y)
+          table.insert(actorList, a)
+        end
+      end
+    end
   end
-end
-end
-end
 end
 
 return Player

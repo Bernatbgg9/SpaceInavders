@@ -51,6 +51,9 @@ function love.draw()
             if v.game == "instrucciones" then
                 v:draw()
             end
+            if v.game == "gameover" then
+                v:draw()
+            end
         end
     end
 end
@@ -58,9 +61,6 @@ end
 function love.keypressed(key)
     for _, v in ipairs(actorList) do
         if v:is(Player) then
-            v:keyPressed(key)
-        end
-        if v:is(Enemy) then
             v:keyPressed(key)
         end
         if v:is(Hud) then

@@ -20,6 +20,7 @@ function Pantalla:draw()
 
     love.graphics.line(w / 1.2, 10, w / 1.2, 650)
     love.graphics.line(w / 1.19, 0, w / 1.19, h)
+    love.graphics.reset()
 end
 
 return Pantalla

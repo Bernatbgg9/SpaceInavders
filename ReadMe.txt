@@ -26,3 +26,4 @@ estaría bien poner un limite de movimento en la nave y un cooldown de disparo. 
 12/11 Cambios Enmey
 =======
 >>>>>>> 162c9cba7ccd216b2e37510f1d09f6d60719bac0
+12/11 Cambios en las Balas, Player y Enemy, a demas de cambiar booleant

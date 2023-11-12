@@ -2,55 +2,41 @@ Actor = Actor or require "src/actor"
 local BalaPlayer = Actor:extend()
 
 function BalaPlayer:new(x, y)
-   BalaPlayer.super.new(self, "src/textures/balaBueno.png", x, y, 300, 0, 1)
+   BalaPlayer.super.new(self, "src/textures/balaBueno.png", x, y, 500, 0, 1)
    self.scale.x = 2
    self.scale.y = 2
 end
 
 function BalaPlayer:update(dt)
-   --BalaPlayer.super.update(self, dt)
 
    for k, v in ipairs(actorList) do
       if v:is(Hud) then
          if v.pause == false then
             self.position.y = self.position.y - self.speed * dt
-            if self.position.x >= w or self.position.x < 0 or self.position.y >= h or self.position.y < 0 then
-               for i, v in pairs(actorList) do
-                  if (v == self) then
-                     table.remove(actorList, i)
-                  end
-               end
-            end
          end
       end
 
-      for k, v in pairs(actorList) do
-         if v:is(Enemy) then
-            if self:checkCollision(v) then
-               table.remove(actorList, k)
-            end
+      if v:is(BalaPlayer) then
+         if v.position.x >= w or v.position.x < 0 or v.position.y >= h or v.position.y < 0 then
+            table.remove(actorList,k)
+         end
+      end
 
-            if self:checkCollision(v) then
-               table.remove(actorList, k)
-               for kk, vv in pairs(actorList) do
-                  if vv:is(Hud) then
-                     vv.p = vv.p + 1
-                  end
+      if v:is(Enemy) then
+         if self:checkCollision(v) then
+            table.remove(actorList, k)
+            for kk, vv in pairs(actorList) do
+               if vv:is(Hud) then
+                  vv.p = vv.p + 10
                end
-            end
-
-
-            if self:checkCollision(v) then
-               table.remove(actorList, k)
-               for kk, vv in pairs(actorList) do
-                  if vv:is(Hud) then
-                     vv.p = vv.p + 1
-                  end
+               if vv.is(BalaPlayer) then
+                  table.remove(actorList,kk)
                end
             end
          end
       end
    end
+
 end
 
 function BalaPlayer:draw()
