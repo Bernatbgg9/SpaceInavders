@@ -47,6 +47,14 @@ end
 function HUD:update(dt)
   self.hp = ("HP: " .. self.vidas)
   self.pp = ("POINTS: " .. self.p)
+
+  for k,v in ipairs(actorList) do
+    if v:is(Player) then
+      if v.explosionDone == true then
+        self.game = "gameover"
+      end
+    end
+  end
 end
 
 
@@ -112,10 +120,8 @@ function HUD:draw()
       end
     end
   end
-
-  if self.vidas <= 0 then
-    self.game = "gameover"
-  end
+  
+  
 
   if self.game == "gameover" then
     love.graphics.setColor(0, 255, 0)

@@ -1,11 +1,13 @@
 Actor = Actor or require "src/actor"
 BalaPlayer = BalaPlayer or require "src/BalaPlayer"
+Explosion = Explosion or require "src/Explosion"
 local Player = Actor:extend()
 
 function Player:new()
   Player.super.new(self, "src/textures/naveXetada.png", 400, 500, 200, 1, 0)
   self.hp = 5
   self.points = 0
+  self.explosionDone = false
 end
 
 function Player:update(dt)
@@ -36,6 +38,16 @@ function Player:update(dt)
     end
   end
   
+end
+for kk,vv in ipairs(actorList) do
+  if vv:is(Hud) then
+if vv.vidas <= 0 then
+  local e = Explosion:extend()
+  e:new(self.position.x, self.position.y)
+  table.insert(actorList,e)
+  self.explosionDone = true
+end
+end
 end
 end
 
