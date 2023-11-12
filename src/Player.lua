@@ -9,25 +9,33 @@ function Player:new()
 end
 
 function Player:update(dt)
-  if love.keyboard.isDown("d") then
-    self.position.x = self.position.x + self.speed * dt
-  end
-  if love.keyboard.isDown("a") then
-    self.position.x = self.position.x - self.speed * dt
-  end
-  for k, v in pairs(actorList) do
-    if v:is(Bala) then
-        if self:checkCollision(v) then
-            table.remove(actorList, k)
-            for kk, vv in pairs(actorList) do
-                if vv:is(Hud) then
-                    if vv.vidas > 0 then
-                        vv.vidas = vv.vidas - 1
+  for k,v in ipairs(actorList) do
+    if v:is(Hud) then
+        
+        if v.pause == false then
+          if love.keyboard.isDown("d") then
+            self.position.x = self.position.x + self.speed * dt
+          end
+          if love.keyboard.isDown("a") then
+            self.position.x = self.position.x - self.speed * dt
+          end
+          for k, v in pairs(actorList) do
+            if v:is(Bala) then
+                if self:checkCollision(v) then
+                    table.remove(actorList, k)
+                    for kk, vv in pairs(actorList) do
+                        if vv:is(Hud) then
+                            if vv.vidas > 0 then
+                                vv.vidas = vv.vidas - 1
+                            end
+                        end
                     end
                 end
             end
         end
     end
+  end
+  
 end
 end
 
@@ -45,10 +53,17 @@ function Player:draw()
 end
 
 function Player:keyPressed(key)
+  for k,v in ipairs(actorList) do
+    if v:is(Hud) then
+        
+        if v.pause == false then
   if key == "space" then
     local a = BalaPlayer(self.position.x, self.position.y)
     table.insert(actorList, a)
   end
+end
+end
+end
 end
 
 return Player

@@ -7,6 +7,11 @@ function Bala:new()
 end
 
 function Bala:update(dt)
+
+    for k,v in ipairs(actorList) do
+        if v:is(Hud) then
+            
+            if v.pause == false then
   --Bala.super.update(self, dt)
   if self.stop == false then
   self.position.y = self.position.y + self.speed * dt
@@ -64,6 +69,9 @@ function Bala:update(dt)
         table.remove(actorList, k)
     end
     -- local eliminar = {}
+end
+end
+end
 end
 end
 end

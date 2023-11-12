@@ -184,6 +184,7 @@ function HUD:keyPressed(key)
       end
       if key == "return" and self.redLightUp == true then
         self.eraseMenu = true
+        self.pause = false
         self.game = "game"
         for k, v in ipairs(actorList) do
           if v:is(Enemy) then

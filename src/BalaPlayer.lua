@@ -9,6 +9,11 @@ end
 
 function BalaPlayer:update(dt)
    --BalaPlayer.super.update(self, dt)
+   
+   for k,v in ipairs(actorList) do
+      if v:is(Hud) then
+          
+          if v.pause == false then
    self.position.y = self.position.y - self.speed * dt
    if self.position.x >= w or self.position.x < 0 or self.position.y >= h or self.position.y < 0 then
       for i, v in pairs(actorList) do
@@ -44,6 +49,9 @@ function BalaPlayer:update(dt)
          end
       end
    end
+end
+end   
+end
 end
 
 function BalaPlayer:draw()
