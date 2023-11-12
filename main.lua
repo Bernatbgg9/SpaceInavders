@@ -20,11 +20,10 @@ function love.load()
     table.insert(actorList, p)
     local s = Spawner()
     table.insert(actorList, s)
-    local e = Enemy()
-    table.insert(actorList, e)
 end
 
 function love.update(dt)
+
     for _, v in ipairs(actorList) do
         v:update(dt)
         if v:is(Hud) then
@@ -41,8 +40,22 @@ end
 
 function love.draw()
     for _, v in ipairs(actorList) do
+        if v:is(Hud) then
         v:draw()
+        end
     end
+    for kk,vv in ipairs(actorList) do
+        if vv:is(Hud) then
+            
+            if vv.game == "game" then
+                for _, v in ipairs(actorList) do
+                    v:draw()
+                    
+                end
+            end
+        end
+    end
+    
 end
 
 function love.keypressed(key)

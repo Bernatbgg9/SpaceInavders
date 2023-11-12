@@ -3,9 +3,19 @@ Bala = Actor:extend()
 
 function Bala:new()
     Bala.super.new(self, "src/textures/balaMalo.png", 1, 1, 150, 1, 0)
+    self.stop = false
 end
 
 function Bala:update(dt)
+  --Bala.super.update(self, dt)
+  if self.stop == false then
+  self.position.y = self.position.y + self.speed * dt
+  if self.position.x >= w or self.position.x < 0 or self.position.y >= h or self.position.y < 0 then
+    for i, v in pairs(actorList) do
+      if (v == self) then
+        table.remove(actorList, i)
+      end
+
     --Bala.super.update(self, dt)
     self.position.y = self.position.y + self.speed * dt
     if self.position.x >= w or self.position.x < 0 or self.position.y >= h or self.position.y < 0 then
@@ -23,7 +33,7 @@ function Bala:update(dt)
                     end
                 end
             end
-            local eliminar = {}
+            self.eliminar = {}
             for k, v in pairs(actorList) do
                 if v:is(self) then
                     for kk, vv in pairs(actorList) do
@@ -45,12 +55,18 @@ function Bala:update(dt)
                     end
                 end
             end
-            for k, v in pairs(eliminar) do
+            for k, v in pairs(self.eliminar) do
                 table.remove(actorList, k)
             end
         end
     end
+    for k, v in pairs(self.eliminar) do
+        table.remove(actorList, k)
+    end
     -- local eliminar = {}
+end
+end
+end
 end
 
 --local eliminar = {}
@@ -88,5 +104,15 @@ function Bala:draw()
     local rr = self.rot
     love.graphics.draw(self.image, xx, yy, rr, sx, sy, ox, oy, 0, 0)
 end
+
+function Bala:keyPressed(key)
+    
+    if key == "escape" then
+        self.stop = true
+    end
+    if key == "return" then
+        self.stop = false
+    end
+  end
 
 return Bala

@@ -23,6 +23,10 @@ function BalaPlayer:update(dt)
          if self:checkCollision(v) then
             table.remove(actorList, k)
          end
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8e928c70c5c9628823a0ac270400c4f7d95238f6
         if self:checkCollision(v) then
           table.remove(actorList, k)
           for kk, vv in pairs(actorList) do
@@ -31,6 +35,10 @@ function BalaPlayer:update(dt)
             end
           end
         end
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8e928c70c5c9628823a0ac270400c4f7d95238f6
 
          if self:checkCollision(v) then
             table.remove(actorList, k)
