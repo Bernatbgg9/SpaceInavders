@@ -5,7 +5,8 @@ Hud = Hud or require "src/Hud"
 Spawner = Spawner or require "src/Spawner"
 Pantalla = Pantalla or require "src/Pantalla"
 
-
+local delay = 1
+local time = 0
 actorList = {} --Lista de elementos de juego
 
 
@@ -50,8 +51,38 @@ function love.draw()
             if vv.game == "game" then
                 for _, v in ipairs(actorList) do
                     v:draw()
+                    for kkk,vvv in ipairs(actorList) do
+                        if vvv:is(Hud) then
+                            
+                            if vvv.pause == true then
+                                 vvv:draw()
+                                
+                            end
+                        end
+                    end
                     
                 end
+            end
+        end
+    end
+    for cc,vv in ipairs(actorList) do
+        if vv:is(Player) then
+            if vv.explosionDone == true then 
+                function love.update(dt)
+                    time = time + 1 * dt
+
+                if delay <= time then
+                    for kk,vv in ipairs(actorList) do
+                        if vv:is(Hud) then
+                            
+                            vv.game = "gameover"
+                        end
+                    end 
+                end
+                end
+                
+
+                
             end
         end
     end
