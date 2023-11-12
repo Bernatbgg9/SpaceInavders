@@ -12,3 +12,4 @@
 9/11 suma de puntos i resta de vidas (aun queda)
 >>>>>>> 24590709618c07d1ae1a84d92a1756748e51d65b
 10/11 suma de puntos i resta de vida hecho
+12/11 tamaño nave
