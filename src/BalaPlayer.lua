@@ -2,7 +2,7 @@ Actor = Actor or require "src/actor"
 local BalaPlayer = Actor:extend()
 
 function BalaPlayer:new(x, y)
-   BalaPlayer.super.new(self, "src/textures/balaBueno.png", x, y, 500, 0, 1)
+   BalaPlayer.super.new(self, "src/textures/balaBueno.png", x, y, 800, 0, 1)
    self.scale.x = 2
    self.scale.y = 2
 end
@@ -25,7 +25,7 @@ function BalaPlayer:update(dt)
          end
       end
 
-      if v:is(Enemy) then
+      if v:is(Enemy) or v:is(Boss) then
 
          if self:checkCollision(v) then
             table.remove(actorList, k)
@@ -34,10 +34,6 @@ function BalaPlayer:update(dt)
 
                if vv:is(Hud) then
                   vv.p = vv.p + 10
-               end
-               
-               if vv.is(BalaPlayer) then
-                  table.remove(actorList,kk)
                end
             end
          end

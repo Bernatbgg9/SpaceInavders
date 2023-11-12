@@ -16,7 +16,7 @@ function Bala:update(dt)
         end
         
         if v:is(Bala) then
-            if v.position.x >= w or v.position.x < 0 or v.position.y >= h or v.position.y < 0 then
+            if v.position.x >= w or v.position.x < 0 or v.position.y >= 600 or v.position.y < 0 then
                 table.remove(actorList, k)
             end
         end

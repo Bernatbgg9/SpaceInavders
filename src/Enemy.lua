@@ -69,6 +69,10 @@ function Enemy:update(dt)
                         elseif v.position.x < w / 6 or v.position.x > w / 1.25 then
                             v.fila = 1
                         end
+
+                        if v.position.y > 500 then
+                            table.remove(actorList, k)
+                        end
                     end
                 end
 
@@ -108,14 +112,6 @@ function Enemy:update(dt)
                 elseif self.position.y >= 430 and self.position.y <= 480 and self.fila == 3 then
                     self.position = self.position + self.forward * self.speed * dt
 
-                end
-                
-                if self.position.y > 540 then
-                    --[[for index, value in ipairs(actorList) do
-                        if value:is(Hud) then
-                            value.game = "gameover"
-                        end
-                    end]]
                 end
 
                 local enemy = {}

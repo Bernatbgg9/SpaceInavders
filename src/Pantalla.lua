@@ -32,10 +32,10 @@ function Pantalla:draw()
     love.graphics.line(w / 7, 10, w / 1.2, 10)
 
     love.graphics.line(w / 7, 10, w / 7, 600)
-    love.graphics.line(w / 7.3, 0, w / 7.3, h)
+    love.graphics.line(w / 7.8, 0, w / 7.8, h)
 
     love.graphics.line(w / 1.2, 10, w / 1.2, 600)
-    love.graphics.line(w / 1.19, 0, w / 1.19, h)
+    love.graphics.line(w / 1.182, 0, w / 1.182, h)
     love.graphics.reset()
 
     love.graphics.draw(self.image1, 400, 620, 0, 3, 3)

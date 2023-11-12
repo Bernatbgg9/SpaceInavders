@@ -8,39 +8,53 @@ function Player:new()
   self.hp = 5
   self.points = 0
   self.explosionDone = false
-  self.timer = 0.5
+  self.timerDisparo = 0.5
+  self.timer = 0.1
 end
 
 function Player:update(dt)
-  self.timer = self.timer - dt
+  local e = Explosion(self.position.x, self.position.y)
+  self.timerDisparo = self.timerDisparo - dt
+
   for k, v in ipairs(actorList) do
+
     if v:is(Hud) then
-      if v.pause == false then
+
+      if v.pause == false and v.game == "game" and v.vidas > 0 then
+
         if love.keyboard.isDown("d") then
           self.position.x = self.position.x + self.speed * dt
         end
+
         if love.keyboard.isDown("a") then
           self.position.x = self.position.x - self.speed * dt
         end
+
         if self.position.x > w / 1.25 then
           self.position.x = w / 6
         end
+
         if self.position.x < w / 6 then
           self.position.x = w / 1.25
         end
       end
+
       if v.vidas <= 0 then
-        local e = Explosion:extend()
-        e:new(self.position.x, self.position.y)
+        local e = Explosion(self.position.x, self.position.y - 40)
         table.insert(actorList, e)
-        self.explosionDone = true
+        self.timer = self.timer - dt
       end
     end
+
     if v:is(Bala) then
+
       if self:checkCollision(v) then
         table.remove(actorList, k)
+
         for kk, vv in pairs(actorList) do
+
           if vv:is(Hud) then
+            
             if vv.vidas > 0 then
               vv.vidas = vv.vidas - 1
             end
@@ -65,13 +79,17 @@ function Player:draw()
 end
 
 function Player:keyPressed(key)
+
   for k, v in ipairs(actorList) do
+
     if v:is(Hud) then
-      if v.pause == false and self.timer <= 0 then
+
+      if v.game == "game" and v.pause == false and self.timerDisparo <= 0 then
+
         if key == "space" then
           local a = BalaPlayer(self.position.x, self.position.y)
           table.insert(actorList, a)
-          self.timer = 0.5
+          self.timerDisparo = 0.5
         end
       end
     end
