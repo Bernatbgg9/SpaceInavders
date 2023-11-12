@@ -11,6 +11,7 @@ actorList = {} --Lista de elementos de juego
 
 
 function love.load()
+
     --love.window.setFullscreen(true, "exclusive")
     w, h = love.graphics.getDimensions()
     local h = Hud()
@@ -24,11 +25,16 @@ function love.load()
 end
 
 function love.update(dt)
+
     for _, v in ipairs(actorList) do
         v:update(dt)
+
         if v:is(Hud) then
+
             if v.vidas <= 0 then
+
                 for kk, vv in pairs(actorList) do
+
                     if vv:is(Bala) or vv:is(BalaPlayer) or vv:is(Player) or vv:is(Enemy) then
                         table.remove(actorList, kk)
                     end
@@ -39,20 +45,24 @@ function love.update(dt)
 end
 
 function love.draw()
+
     for _, v in ipairs(actorList) do
+
         if v:is(Hud) then
+
             if v.game == "menu" then
                 v:draw()
-            end
-            if v.game == "game" then
+
+            elseif v.game == "game" then
+
                 for k, v in ipairs(actorList) do
                     v:draw()
                 end
-            end
-            if v.game == "instrucciones" then
+
+            elseif v.game == "instrucciones" then
                 v:draw()
-            end
-            if v.game == "gameover" then
+                
+            elseif v.game == "gameover" then
                 v:draw()
             end
         end
@@ -63,7 +73,6 @@ function love.draw()
             if vv.explosionDone == true then
                 function love.update(dt)
                     time = time + 1 * dt
-
                     if delay <= time then
                         for kk, vv in ipairs(actorList) do
                             if vv:is(Hud) then
@@ -78,10 +87,13 @@ function love.draw()
 end
 
 function love.keypressed(key)
+
     for _, v in ipairs(actorList) do
+
         if v:is(Player) then
             v:keyPressed(key)
         end
+        
         if v:is(Hud) then
             v:keyPressed(key)
         end

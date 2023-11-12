@@ -10,9 +10,13 @@ end
 function Spawner:update(dt)
 
     for k, v in ipairs(actorList) do
+
         if v:is(Hud) then
+
             if v.game == "game" and v.pause == false then
+
                 self.tActual = self.tActual + dt
+                
                 if self.tActual > self.tFinal then
                     self.tActual = 0
                     local a = Enemy()

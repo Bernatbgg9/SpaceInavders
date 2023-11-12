@@ -2,16 +2,19 @@ local Actor = Actor or require "Scripts/actor"
 Bala = Actor:extend()
 
 function Bala:new()
-    Bala.super.new(self, "src/textures/balaMalo.png", 1, 1, 150, 1, 0)
+    Bala.super.new(self, "src/textures/balaMalo.png", 1, 1, 250, 1, 0)
 end
 
 function Bala:update(dt)
+
     for k, v in ipairs(actorList) do
+
         if v:is(Hud) then
             if v.pause == false then
                 self.position.y = self.position.y + self.speed * dt
             end
         end
+        
         if v:is(Bala) then
             if v.position.x >= w or v.position.x < 0 or v.position.y >= h or v.position.y < 0 then
                 table.remove(actorList, k)

@@ -4,13 +4,15 @@ Explosion = Explosion or require "src/Explosion"
 local Player = Actor:extend()
 
 function Player:new()
-  Player.super.new(self, "src/textures/naveXetada.png", w / 2, 600, 300, 1, 0)
+  Player.super.new(self, "src/textures/naveXetada.png", w / 2, 550, 300, 1, 0)
   self.hp = 5
   self.points = 0
   self.explosionDone = false
+  self.timer = 0.5
 end
 
 function Player:update(dt)
+  self.timer = self.timer - dt
   for k, v in ipairs(actorList) do
     if v:is(Hud) then
       if v.pause == false then
@@ -65,10 +67,11 @@ end
 function Player:keyPressed(key)
   for k, v in ipairs(actorList) do
     if v:is(Hud) then
-      if v.pause == false then
+      if v.pause == false and self.timer <= 0 then
         if key == "space" then
           local a = BalaPlayer(self.position.x, self.position.y)
           table.insert(actorList, a)
+          self.timer = 0.5
         end
       end
     end
