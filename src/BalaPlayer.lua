@@ -9,49 +9,48 @@ end
 
 function BalaPlayer:update(dt)
    --BalaPlayer.super.update(self, dt)
-   
-   for k,v in ipairs(actorList) do
+
+   for k, v in ipairs(actorList) do
       if v:is(Hud) then
-          
-          if v.pause == false then
-   self.position.y = self.position.y - self.speed * dt
-   if self.position.x >= w or self.position.x < 0 or self.position.y >= h or self.position.y < 0 then
-      for i, v in pairs(actorList) do
-         if (v == self) then
-            table.remove(actorList, i)
+         if v.pause == false then
+            self.position.y = self.position.y - self.speed * dt
+            if self.position.x >= w or self.position.x < 0 or self.position.y >= h or self.position.y < 0 then
+               for i, v in pairs(actorList) do
+                  if (v == self) then
+                     table.remove(actorList, i)
+                  end
+               end
+            end
          end
       end
-   end
-   
-   for k, v in pairs(actorList) do
-      if v:is(Enemy) then
-         if self:checkCollision(v) then
-            table.remove(actorList, k)
-         end
 
-        if self:checkCollision(v) then
-          table.remove(actorList, k)
-          for kk, vv in pairs(actorList) do
-            if vv:is(Hud) then
-              vv.p = vv.p + 1
+      for k, v in pairs(actorList) do
+         if v:is(Enemy) then
+            if self:checkCollision(v) then
+               table.remove(actorList, k)
             end
-          end
-        end
+
+            if self:checkCollision(v) then
+               table.remove(actorList, k)
+               for kk, vv in pairs(actorList) do
+                  if vv:is(Hud) then
+                     vv.p = vv.p + 1
+                  end
+               end
+            end
 
 
-         if self:checkCollision(v) then
-            table.remove(actorList, k)
-            for kk, vv in pairs(actorList) do
-               if vv:is(Hud) then
-                  vv.p = vv.p + 1
+            if self:checkCollision(v) then
+               table.remove(actorList, k)
+               for kk, vv in pairs(actorList) do
+                  if vv:is(Hud) then
+                     vv.p = vv.p + 1
+                  end
                end
             end
          end
       end
    end
-end
-end   
-end
 end
 
 function BalaPlayer:draw()
