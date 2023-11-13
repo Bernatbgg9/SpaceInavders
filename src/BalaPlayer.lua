@@ -25,7 +25,7 @@ function BalaPlayer:update(dt)
          end
       end
 
-      if v:is(Enemy) or v:is(Boss) then
+      if v:is(Enemy) or v:is(Boss) or v:is(FinalBoss) then
 
          if self:checkCollision(v) then
             table.remove(actorList, k)

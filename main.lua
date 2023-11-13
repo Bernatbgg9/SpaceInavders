@@ -5,6 +5,7 @@ Spawner = Spawner or require "src/Spawner"
 Pantalla = Pantalla or require "src/Pantalla"
 Explosion = Explosion or require"src/Explosion"
 Boss = Boss or require "src/Boss"
+FinalBoss = FinalBoss or require "src/FinalBoss"
 
 actorList = {} --Lista de elementos de juego
 local timer = 1
