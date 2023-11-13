@@ -5,14 +5,18 @@ Spawner = Spawner or require "src/Spawner"
 Pantalla = Pantalla or require "src/Pantalla"
 Explosion = Explosion or require"src/Explosion"
 Boss = Boss or require "src/Boss"
+
 FinalBoss = FinalBoss or require "src/FinalBoss"
+
+Music = Music or require "src/Music"
+
 
 actorList = {} --Lista de elementos de juego
 local timer = 1
 
 function love.load()
 
-    love.window.setFullscreen(true, "exclusive")
+    --love.window.setFullscreen(true, "exclusive")
     w, h = love.graphics.getDimensions()
     local h = Hud()
     table.insert(actorList, h)
@@ -22,6 +26,8 @@ function love.load()
     table.insert(actorList, p)
     local s = Spawner()
     table.insert(actorList, s)
+    local m = Music()
+    table.insert(actorList, m)
 
 end
 
