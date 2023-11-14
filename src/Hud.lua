@@ -126,7 +126,7 @@ function HUD:draw()
     love.graphics.setFont(title)
     love.graphics.print("GAME OVER", self.gameoverx, self.gameovery)
     love.graphics.setFont(font1)
-    love.graphics.print("PUNTUCAION " .. self.p, self.gameover2, self.menu6y - 50)
+    love.graphics.print("PUNTUACION " .. self.p, self.gameover2, self.menu6y - 50)
     love.graphics.print("PULSA ENTER PARA RESTART", self.gameover2, self.menu6y)
   end
 end

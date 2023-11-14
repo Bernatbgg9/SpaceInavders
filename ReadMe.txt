@@ -29,3 +29,4 @@ estaría bien poner un limite de movimento en la nave y un cooldown de disparo. 
 12/11 Cambios en las Balas, Player y Enemy, a demas de cambiar booleant
 12/11 muchos cambios :()
 13/11 Ganas de morir
+13/11 profe enfadado a 500p 

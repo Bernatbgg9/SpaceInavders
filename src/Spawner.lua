@@ -1,6 +1,7 @@
 local Actor = Actor or require("src/actor")
 local Enemy = Enemy or require "src/Enemy"
 local Boss = Boss or require "src/Boss"
+local FinalBoss = FinalBoss or require "src/FinalBoss"
 local Spawner = Actor:extend()
 
 function Spawner:new(_t)
@@ -27,6 +28,13 @@ function Spawner:update(dt)
 
                         local b = Boss()
                         table.insert(actorList, b)
+                    end
+
+                    if v.p >= 500 then
+                        table.remove(actorList, b)
+                        local c = FinalBoss()
+                        table.insert(actorList, c)
+                       
                     end
 
                     self.tActual = 0
