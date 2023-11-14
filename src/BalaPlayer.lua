@@ -33,7 +33,7 @@ function BalaPlayer:update(dt)
             for kk, vv in pairs(actorList) do
 
                if vv:is(Hud) then
-                  vv.p = vv.p + 10
+                  vv.p = vv.p + 1
                end
             end
          end
