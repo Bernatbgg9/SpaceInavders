@@ -1,12 +1,14 @@
 local Actor = Actor or require("src/actor")
 local Enemy = Enemy or require "src/Enemy"
 local Boss = Boss or require "src/Boss"
-local FinalBoss = FinalBoss or require "src/FinalBoss"
 local Spawner = Actor:extend()
+
+local drw = 1
 
 function Spawner:new(_t)
     self.tFinal = _t or 1
     self.tActual = 0
+    self.tBoss = 5
 end
 
 function Spawner:update(dt)
@@ -17,6 +19,8 @@ function Spawner:update(dt)
 
             if v.game == "game" and v.pause == false then
 
+                self.tBoss = self.tBoss - dt
+
                 self.tActual = self.tActual + dt
                 
                 if self.tActual > self.tFinal then
@@ -24,17 +28,10 @@ function Spawner:update(dt)
                     local a = Enemy()
                     table.insert(actorList, a)
 
-                    if v.p >= 200 then
-
+                    if self.tBoss <= 0 and drw == 1 then
                         local b = Boss()
                         table.insert(actorList, b)
-                    end
-
-                    if v.p >= 500 then
-                        table.remove(actorList, b)
-                        local c = FinalBoss()
-                        table.insert(actorList, c)
-                       
+                        drw = 2
                     end
 
                     self.tActual = 0

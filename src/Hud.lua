@@ -24,14 +24,16 @@ function HUD:new()
   self.pause = false
   self.pausex = w / 2.25
   self.pausex2 = w / 2.3
-  self.pausex4 = w / 2.5
+  self.pausex4 = w / 2.45
   self.pausex3 = w / 2.2
   self.pausey = 100
-  self.pausey2 = 350
+  self.pausey2 = 300
   self.pausey4 = 400
+  self.pausey5 = 350
   self.pausey3 = 450
   self.redLightDown = false
   self.redMidle = false
+  self.redMidle2 = false
   self.redLightUp = true
   self.eraseMenu = false
   self.menux = 10
@@ -45,6 +47,7 @@ function HUD:new()
   self.gameoverx = 350
   self.gameovery = 150
   self.gameover2 = 350
+  self.pasar = false
 end
 
 function HUD:update(dt)
@@ -107,7 +110,14 @@ function HUD:draw()
         else
           love.graphics.setColor(0, 255, 0)
         end
-        love.graphics.print("STOPE MUSIC", self.pausex4, self.pausey4)
+        love.graphics.print("STOP MUSIC", self.pausex4, self.pausey4)
+
+        if self.redMidle2 == true then
+          love.graphics.setColor(255, 0, 0)
+        else
+          love.graphics.setColor(0, 255, 0)
+        end
+        love.graphics.print("NEXT MUSIC", self.pausex4, self.pausey5)
 
         if self.redLightDown == true then
           love.graphics.setColor(255, 0, 0)
@@ -167,22 +177,36 @@ function HUD:keyPressed(key)
       if key == "up" then
         if self.redMidle == false and self.redLightDown == true then
           self.redMidle = true
+          self.redMidle2 = false
+          self.redLightDown = false
+          self.redLightUp = false
+        elseif self.redMidle2 == false and self.redMidle == true then
+          self.redMidle2 = true
+          self.redMidle = false
           self.redLightDown = false
           self.redLightUp = false
         else
           self.redLightDown = false
           self.redLightUp = true
           self.redMidle = false
+          self.redMidle2 = false
         end
       end
 
       if key == "down" then
-        if self.redMidle == false and self.redLightUp == true then
+        if self.redMidle2 == false and self.redLightUp == true then
+          self.redMidle2 = true
+          self.redMidle = false
+          self.redLightDown = false
+          self.redLightUp = false
+        elseif self.redMidle == false and self.redMidle2 == true then
           self.redMidle = true
+          self.redMidle2 = false
           self.redLightDown = false
           self.redLightUp = false
         else
           self.redLightDown = true
+          self.redMidle2 = false
           self.redLightUp = false
           self.redMidle = false
         end
@@ -201,9 +225,17 @@ function HUD:keyPressed(key)
             if v.pause then
               v.pause = false
             end
-            if v.pause == false and v.timer <=0 then
+            if v.pause == false and v.timerP <=0 then
               v.pause = true
             end
+          end
+        end
+      end
+
+      if key == "return" and self.redMidle2 == true then
+        for k, v in ipairs(actorList) do
+          if v:is(Music) then
+            self.pasar = true
           end
         end
       end

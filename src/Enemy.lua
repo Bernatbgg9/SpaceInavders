@@ -2,7 +2,7 @@ Actor = Actor or require "src/actor"
 local Enemy = Actor:extend()
 local Bala = Bala or require "src/Bala"
 
-local timerDisparo = 7
+local timerDisparo = 5
 
 local skinMalos = { "src/textures/malo1.png", "src/textures/malo.png", "src/textures/malo2.png" }
 
@@ -15,18 +15,20 @@ function Enemy:new()
     self.forward        = Vector.new(1, 0)
     self.fila           = 1
     self.timerMovimento = 0
+    self.vida = 1
 end
 
 function Enemy:update(dt)
-
-    timerDisparo = timerDisparo - dt
-    self.timerMovimento = self.timerMovimento - dt
 
     for kk, vv in ipairs(actorList) do
 
         if vv:is(Hud) then
 
             if vv.pause == false and vv.game ~= "gameover" then
+
+                timerDisparo = timerDisparo - dt
+                self.timerMovimento = self.timerMovimento - dt
+
                 self.position.y = self.position.y + self.speed * dt
 
                 for k, v in ipairs(actorList) do
@@ -70,7 +72,7 @@ function Enemy:update(dt)
                             v.fila = 1
                         end
 
-                        if v.position.y > 500 then
+                        if v.position.y > 500 or v.vida <= 0 then
                             table.remove(actorList, k)
                         end
                     end
@@ -123,7 +125,7 @@ function Enemy:update(dt)
                     end
                 end
 
-                if timerDisparo <= 0 and self.position.y <= 380 then
+                if timerDisparo <= 0 and self.position.y <= 330 then
 
                     local num = math.random(1, #enemy)
 
@@ -138,6 +140,24 @@ function Enemy:update(dt)
                         end
                     end
                 end
+            end
+        end
+
+        if vv:is(BalaPlayer) then
+
+            if self:checkCollision(vv) then
+                table.remove(actorList,kk)
+                
+                for k, v in pairs(actorList) do
+
+                    if v:is(Hud) then
+                       v.p = v.p + 10
+                    end
+
+                    if v:is(Enemy) then
+                        self.vida = self.vida - 1
+                    end
+                 end
             end
         end
     end

@@ -5,9 +5,6 @@ Spawner = Spawner or require "src/Spawner"
 Pantalla = Pantalla or require "src/Pantalla"
 Explosion = Explosion or require"src/Explosion"
 Boss = Boss or require "src/Boss"
-
-FinalBoss = FinalBoss or require "src/FinalBoss"
-
 Music = Music or require "src/Music"
 
 
