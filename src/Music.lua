@@ -1,8 +1,8 @@
 Actor = Actor or require "src/actor"
 local Music = Actor:extend()
 
-local list = {"/src/textures/Music/Musica.mp3","/src/textures/Music/Music1.mp3","/src/textures/Music/Music2.mp3","/src/textures/Music/Music.mp3"}
-local dur
+local list = {"/src/textures/Music/Musica.mp3","/src/textures/Music/Music1.mp3","/src/textures/Music/Music2.mp3","/src/textures/Music/Music.mp3","/src/textures/Music/MusicaE.mp3"}
+local dur, length
 
 function Music:new()
     self.i = 1
@@ -12,6 +12,7 @@ function Music:new()
     self.timer = 1
     self.timerP = 0.5
     dur = self.music:getDuration()
+    length = #list
 end
 
 function Music:update(dt)
@@ -35,7 +36,7 @@ function Music:update(dt)
                             self.i = self.i + 1
                         end
     
-                        if self.i > 4 then
+                        if self.i > length then
                             self.i = 1
                             self.music = love.audio.newSource(list[self.i], "stream")
                             self.music:setVolume(0.3)

@@ -30,12 +30,12 @@ function Player:update(dt)
           self.position.x = self.position.x - self.speed * dt
         end
 
-        if self.position.x > w / 1.25 then
-          self.position.x = w / 6
+        if self.position.x > w / 1.22 then
+          self.position.x = w / 6.6
         end
 
-        if self.position.x < w / 6 then
-          self.position.x = w / 1.25
+        if self.position.x < w / 6.6 then
+          self.position.x = w / 1.22
         end
       end
 

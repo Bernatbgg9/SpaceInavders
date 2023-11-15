@@ -42,6 +42,7 @@ function HUD:new()
   self.menu3y = 350
   self.menu4y = 190
   self.menu5y = 230
+  self.menu7y = 270
   self.menu6y = 410
   self.gameEnd = false
   self.gameoverx = 350
@@ -75,6 +76,7 @@ function HUD:draw()
     love.graphics.print("- Destruye tantas naves enemigas como puedas", self.menux, self.menu1y)
     love.graphics.print("- Para moverte usa A y D", self.menux, self.menu4y)
     love.graphics.print("- Presiona Space para disparar", self.menux, self.menu5y)
+    love.graphics.print("- Menu pausa con ESC. usa las Flechas para moverte y el enter para selecionar", self.menux, self.menu7y)
     love.graphics.setFont(font1)
     love.graphics.print("PULSA ENTER PARA VOLVER", self.menux, self.menu6y)
     love.graphics.setColor(255, 255, 255)

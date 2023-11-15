@@ -40,11 +40,6 @@ function Boss:update(dt)
 
                 if self.vida <= 2 then
                     self.image = love.graphics.newImage("src/textures/profeEnfadado.png")
-
-                elseif self.vida <= 0 then
-                    if v:is(Hud) then
-                        v.p = v.p + 50
-                    end
                 end
 
                 if timerAccion <= 0 then
@@ -76,6 +71,17 @@ function Boss:update(dt)
                         self.vida = self.vida - 1
                     end
                 end
+            end
+        end
+        if self.vida <= 0 then
+            if vv:is(Hud) then
+                vv.p = vv.p + 50
+            end
+            if vv:is(Boss) then
+                table.remove(actorList,kk)
+            end
+            if vv:is(Spawner) then
+                vv.tBoss = 5
             end
         end
     end

@@ -33,6 +33,9 @@ function Spawner:update(dt)
                         table.insert(actorList, b)
                         drw = 2
                     end
+                    if self.tBoss > 0 and drw == 2 then
+                        drw = 1
+                    end
 
                     self.tActual = 0
                 end
