@@ -1,16 +1,18 @@
-Player = Player or require "src/Player"
 Enemy = Enemy or require "src/Enemy"
-Boss = Boss or require "src/Boss"
+Player = Player or require "src/Player"
 Hud = Hud or require "src/Hud"
 Spawner = Spawner or require "src/Spawner"
 Pantalla = Pantalla or require "src/Pantalla"
+Explosion = Explosion or require"src/Explosion"
+Boss = Boss or require "src/Boss"
+Music = Music or require "src/Music"
 
-local delay = 1
-local time = 0
+
 actorList = {} --Lista de elementos de juego
-
+local timer = 1
 
 function love.load()
+
     --love.window.setFullscreen(true, "exclusive")
     w, h = love.graphics.getDimensions()
     local h = Hud()
@@ -21,67 +23,94 @@ function love.load()
     table.insert(actorList, p)
     local s = Spawner()
     table.insert(actorList, s)
+    local m = Music()
+    table.insert(actorList, m)
+
 end
 
 function love.update(dt)
+
     for _, v in ipairs(actorList) do
         v:update(dt)
+
         if v:is(Hud) then
+
             if v.vidas <= 0 then
+
                 for kk, vv in pairs(actorList) do
-                    if vv:is(Bala) or vv:is(BalaPlayer) or vv:is(Player) or vv:is(Enemy) then
+
+                    if vv:is(BalaPlayer) then
                         table.remove(actorList, kk)
                     end
+
+                    if vv:is(Spawner) then
+                        table.remove(actorList, kk)
+                    end
+
+                    if vv:is(Player) then
+                        if vv.timer <= 0 then
+                            table.remove(actorList, kk)
+                        end
+                    end
+
                 end
+
+                timer = timer - dt
+            end
+        end
+
+        if timer <= 0 then
+
+            if v:is(Bala) then
+                table.remove(actorList, _)
+
+            elseif v:is(Enemy) then
+                table.remove(actorList, _)
+
+            elseif v:is(Explosion) then
+                table.remove(actorList, _)
+            end
+
+            if v:is(Hud) then
+                v.game = "gameover"
             end
         end
     end
 end
 
 function love.draw()
+
     for _, v in ipairs(actorList) do
+
         if v:is(Hud) then
+
             if v.game == "menu" then
                 v:draw()
-            end
-            if v.game == "game" then
-                for k, v in ipairs(actorList) do
-                    v:draw()
-                end
-            end
-            if v.game == "instrucciones" then
-                v:draw()
-            end
-            if v.game == "gameover" then
-                v:draw()
-            end
-        end
-    end
 
-    for cc, vv in ipairs(actorList) do
-        if vv:is(Player) then
-            if vv.explosionDone == true then
-                function love.update(dt)
-                    time = time + 1 * dt
+            elseif v.game == "game" then
 
-                    if delay <= time then
-                        for kk, vv in ipairs(actorList) do
-                            if vv:is(Hud) then
-                                vv.game = "gameover"
-                            end
-                        end
-                    end
+                for k, vv in ipairs(actorList) do
+                    vv:draw()
                 end
+
+            elseif v.game == "instrucciones" then
+                v:draw()
+                
+            elseif v.game == "gameover" then
+                v:draw()
             end
         end
     end
 end
 
 function love.keypressed(key)
+
     for _, v in ipairs(actorList) do
+
         if v:is(Player) then
             v:keyPressed(key)
         end
+        
         if v:is(Hud) then
             v:keyPressed(key)
         end
